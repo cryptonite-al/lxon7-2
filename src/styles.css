@@ -1,0 +1,201 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Orbitron", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* LXON-7 brand */
+  --color-space: var(--space);
+  --color-void: var(--void);
+  --color-nebula: var(--nebula);
+  --color-violet-glow: var(--violet-glow);
+  --color-electric: var(--electric);
+  --color-cyan-glow: var(--cyan-glow);
+  --color-magenta-glow: var(--magenta-glow);
+  --color-signal: var(--signal);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Dark cosmic base */
+  --space: oklch(0.08 0.04 285);
+  --void: oklch(0.05 0.03 285);
+  --nebula: oklch(0.28 0.18 295);
+  --violet-glow: oklch(0.55 0.28 295);
+  --electric: oklch(0.62 0.24 265);
+  --cyan-glow: oklch(0.82 0.16 210);
+  --magenta-glow: oklch(0.68 0.28 340);
+  --signal: oklch(0.85 0.15 195);
+
+  --background: var(--space);
+  --foreground: oklch(0.97 0.01 285);
+  --card: oklch(0.12 0.05 285);
+  --card-foreground: oklch(0.97 0.01 285);
+  --popover: oklch(0.12 0.05 285);
+  --popover-foreground: oklch(0.97 0.01 285);
+  --primary: var(--violet-glow);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.18 0.06 285);
+  --secondary-foreground: oklch(0.97 0.01 285);
+  --muted: oklch(0.16 0.04 285);
+  --muted-foreground: oklch(0.72 0.03 285);
+  --accent: var(--magenta-glow);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.6 0.25 20);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.28 0.08 285 / 40%);
+  --input: oklch(0.28 0.08 285 / 40%);
+  --ring: var(--violet-glow);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--violet-glow) 40%, transparent);
+    color: white;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+@utility text-gradient-signal {
+  background-image: linear-gradient(
+    100deg,
+    var(--violet-glow) 0%,
+    var(--electric) 45%,
+    var(--cyan-glow) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-flare {
+  background-image: linear-gradient(
+    100deg,
+    var(--magenta-glow) 0%,
+    var(--violet-glow) 60%,
+    var(--electric) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility starfield {
+  background-color: var(--void);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, color-mix(in oklab, var(--violet-glow) 22%, transparent), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 30%, color-mix(in oklab, var(--magenta-glow) 18%, transparent), transparent 60%),
+    radial-gradient(ellipse 60% 60% at 50% 100%, color-mix(in oklab, var(--electric) 20%, transparent), transparent 65%),
+    radial-gradient(1px 1px at 12% 22%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 27% 68%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 44% 14%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 62% 82%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 78% 44%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 91% 12%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 8% 88%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 35% 90%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 55% 30%, white 99%, transparent 100%),
+    radial-gradient(1px 1px at 72% 62%, white 99%, transparent 100%);
+}
+
+@utility scanlines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    color-mix(in oklab, var(--violet-glow) 6%, transparent) 3px,
+    color-mix(in oklab, var(--violet-glow) 6%, transparent) 4px
+  );
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--violet-glow) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--violet-glow) 8%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility signal-border {
+  border: 1px solid color-mix(in oklab, var(--violet-glow) 40%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--electric) 12%, transparent),
+    0 0 24px -8px color-mix(in oklab, var(--violet-glow) 60%, transparent);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+@utility animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@utility animate-orbit {
+  animation: orbit 40s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; filter: blur(20px); }
+  50% { opacity: 1; filter: blur(30px); }
+}
+@utility animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
