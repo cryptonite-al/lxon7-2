@@ -14,10 +14,10 @@ export function HeroBroadcast() {
         loop
         muted
         playsInline
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-      <div className="starfield absolute inset-0 opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background" />
+      <div className="starfield absolute inset-0 opacity-40" />
       <div className="scanlines pointer-events-none absolute inset-0 opacity-20" />
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-violet-glow/25 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-magenta-glow/25 blur-[120px]" />
