@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroVideo from "@/assets/hero-loop.mp4";
+import heroVideo from "@/assets/hero-bg.mp4";
 import { WATCH_URL, METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
 import { Kicker } from "./primitives";
