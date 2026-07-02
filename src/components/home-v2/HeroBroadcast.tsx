@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroVideo from "@/assets/hero-bg.mp4";
+import heroVideo from "@/assets/spotlight-loop.mp4";
 import { WATCH_URL, METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
 import { Kicker } from "./primitives";
@@ -16,11 +16,11 @@ export function HeroBroadcast() {
         muted
         playsInline
         preload="auto"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-100"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background" />
-      <div className="starfield absolute inset-0 opacity-40" />
-      <div className="scanlines pointer-events-none absolute inset-0 opacity-20" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/10 via-background/25 to-background/80" />
+      <div className="starfield absolute inset-0 opacity-25" />
+      <div className="scanlines pointer-events-none absolute inset-0 opacity-10" />
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-violet-glow/25 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-magenta-glow/25 blur-[120px]" />
 
@@ -36,7 +36,7 @@ export function HeroBroadcast() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="font-display max-w-[16ch] text-[clamp(2.75rem,8.5vw,7rem)] font-black uppercase leading-[0.9] tracking-tight"
+          className="font-display max-w-[16ch] text-[clamp(2.75rem,8.5vw,7rem)] font-black uppercase leading-[0.9] tracking-tight [text-shadow:0_2px_20px_rgba(5,4,15,0.85)]"
         >
           <span className="block text-foreground">Movies made by AI.</span>
           <span className="block">
@@ -45,7 +45,7 @@ export function HeroBroadcast() {
           </span>
         </motion.h1>
 
-        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg [text-shadow:0_1px_12px_rgba(5,4,15,0.9)]">
           LXON-7 is the home for AI-made cinema — feature films, mini-series,
           documentaries, and style shorts from a new wave of directors, streaming
           in 92 countries.
