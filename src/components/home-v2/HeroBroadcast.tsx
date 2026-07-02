@@ -9,11 +9,13 @@ export function HeroBroadcast() {
     <section id="top" className="relative overflow-hidden">
       {/* Ambient background video — full bleed, low opacity */}
       <video
+        ref={(el) => { if (el) el.muted = true; }}
         src={heroVideo}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
       />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background" />

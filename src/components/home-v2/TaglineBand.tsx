@@ -5,11 +5,13 @@ export function TaglineBand() {
   return (
     <section className="relative overflow-hidden">
       <video
+        ref={(el) => { if (el) el.muted = true; }}
         src={cosmicVideo}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 h-full w-full object-cover opacity-90"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-void/30 to-background/80" />

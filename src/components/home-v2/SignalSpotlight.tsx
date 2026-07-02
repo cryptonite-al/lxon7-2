@@ -13,15 +13,21 @@ export function SignalSpotlight() {
       <div className="relative mx-auto grid max-w-[1400px] items-center gap-10 px-4 md:px-8 lg:grid-cols-2 lg:gap-16">
         {/* Left — looping video in a signal-framed panel */}
         <CornerFrame className="signal-border relative aspect-square w-full overflow-hidden rounded-2xl bg-void">
+          {/* ambient glow behind the video so its black backdrop reads as deep space */}
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(139,92,246,0.28),transparent_70%)]" />
           <video
+            ref={(el) => { if (el) el.muted = true; }}
             src={spotlightVideo}
             autoPlay
             loop
             muted
             playsInline
-            className="pointer-events-none h-full w-full object-cover"
+            preload="auto"
+            className="pointer-events-none relative h-full w-full object-cover"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-void/60 via-transparent to-transparent" />
+          {/* soft vignette to frame the edges */}
+          <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_20px_rgba(5,4,15,0.7)]" />
           <div className="scanlines pointer-events-none absolute inset-0 opacity-20" />
         </CornerFrame>
 
