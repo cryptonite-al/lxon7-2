@@ -6,6 +6,7 @@ import { FeaturedSpread } from "@/components/home-v2/FeaturedSpread";
 import { CategoryDial } from "@/components/home-v2/CategoryDial";
 import { SignalRail } from "@/components/home-v2/SignalRail";
 import { CreatorSpotlight } from "@/components/home-v2/CreatorSpotlight";
+import { SignalSpotlight } from "@/components/home-v2/SignalSpotlight";
 import { TaglineBand } from "@/components/home-v2/TaglineBand";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { TRENDING, NEW_TRANSMISSIONS } from "@/lib/lxon-content";
@@ -30,6 +31,7 @@ function Index() {
       <main>
         <HeroBroadcast />
         <SignalTicker />
+        <SignalSpotlight />
         <FeaturedSpread />
         <CategoryDial />
         <SignalRail code="03" title="Trending This Week" items={TRENDING} />
