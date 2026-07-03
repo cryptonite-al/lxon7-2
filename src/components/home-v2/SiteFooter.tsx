@@ -47,12 +47,8 @@ export function SiteFooter() {
               <img src={logo} alt="LXON-7" className="h-20 w-auto md:h-24" />
             </Link>
             <p className="mt-5 max-w-xs text-sm text-muted-foreground">
-              A broadcast channel for AI-native cinema.
+              An AI film studio — original cinema, streaming worldwide.
             </p>
-            <div className="mt-5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-glow/70">
-              <span className="h-1.5 w-1.5 rounded-full bg-magenta-glow shadow-[0_0_10px] shadow-magenta-glow" />
-              Signal · Live
-            </div>
           </div>
 
           {/* Columns */}
@@ -82,7 +78,7 @@ export function SiteFooter() {
             </div>
             <Link
               to="/investor"
-              className="font-display inline-flex w-fit items-center gap-2 rounded-full border border-violet-glow/60 bg-violet-glow/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-foreground transition hover:bg-violet-glow/25"
+              className="btn-wave font-display inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-void transition hover:brightness-110"
             >
               Investor Relations →
             </Link>

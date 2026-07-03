@@ -46,7 +46,7 @@ function ContactPage() {
         <div className="relative mx-auto max-w-[760px] px-4 py-20 md:px-8 md:py-28">
           <Kicker>Contact</Kicker>
           <h1 className="font-display mt-5 text-4xl uppercase leading-[1.05] tracking-tight md:text-5xl">
-            <span className="text-gradient-signal">Open a channel.</span>
+            <span className="text-gradient-signal">Reach the studio.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
             Questions, partnerships, or press? Send us a message and we'll get back to you. Creators
@@ -77,7 +77,7 @@ function ContactPage() {
             />
             <a
               href={mailto}
-              className="font-display inline-flex w-fit items-center gap-2 rounded-full border border-violet-glow/60 bg-violet-glow/15 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"
+              className="btn-wave font-display inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
             >
               Send Message →
             </a>

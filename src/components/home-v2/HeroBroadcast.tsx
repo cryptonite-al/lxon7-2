@@ -58,15 +58,15 @@ export function HeroBroadcast() {
         </motion.h1>
 
         <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg [text-shadow:0_1px_12px_rgba(5,4,15,0.9)]">
-          LXON-7 is the home for AI-made cinema &#8212; feature films, mini-series,
-          documentaries, and style shorts from a new wave of directors, streaming
-          in 92 countries.
+          LXON-7 is an AI film studio. We produce and stream original AI-made
+          cinema &#8212; feature films, mini-series, documentaries, and style
+          shorts &#8212; reaching audiences in 92 countries.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
             href={WATCH_URL}
-            className="font-display group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-glow via-electric to-cyan-glow px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
+            className="btn-wave font-display group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
           >
             Start Watching
             <span className="transition-transform group-hover:translate-x-1">&#8594;</span>

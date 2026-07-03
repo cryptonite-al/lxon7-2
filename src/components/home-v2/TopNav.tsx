@@ -6,7 +6,6 @@ import { WATCH_URL } from "@/lib/lxon-content";
 // "Explore LXON-7" menu. Clicking the label goes to /browse (all content);
 // hovering reveals these. Short labels on purpose for the nav.
 const EXPLORE = [
-  { label: "All Content", to: "/browse" },
   { label: "Films", to: "/films" },
   { label: "Series", to: "/series" },
   { label: "Documentaries", to: "/documentaries" },
@@ -80,7 +79,7 @@ export function TopNav() {
         <div className="ml-auto hidden items-center gap-3 lg:flex">
           <Link
             to="/apply"
-            className="font-display rounded-full border border-violet-glow/60 bg-violet-glow/10 px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-foreground shadow-[0_0_24px_-8px] shadow-violet-glow/60 transition hover:bg-violet-glow/25"
+            className="btn-wave font-display rounded-full px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-void shadow-[0_0_24px_-8px] shadow-violet-glow/60 transition hover:brightness-110"
           >
             Submit Your Film
           </Link>
@@ -144,7 +143,7 @@ export function TopNav() {
               <Link
                 to="/apply"
                 onClick={() => setOpen(false)}
-                className="font-display rounded-full border border-violet-glow/60 bg-violet-glow/10 px-4 py-2.5 text-center text-[11px] uppercase tracking-[0.28em] text-foreground"
+                className="btn-wave font-display rounded-full px-4 py-2.5 text-center text-[11px] uppercase tracking-[0.28em] text-void"
               >
                 Submit Your Film
               </Link>

@@ -1,11 +1,17 @@
 import { WATCH_URL } from "@/lib/lxon-content";
 import { SectionLabel } from "./primitives";
 
-const FIELDS = [
+type Field = { label: string; placeholder: string; options?: string[] };
+
+const FIELDS: Field[] = [
   { label: "> NAME", placeholder: "Isla Varkonyi" },
   { label: "> HANDLE", placeholder: "@studio" },
   { label: "> TITLE", placeholder: "Working title of your transmission" },
-  { label: "> CATEGORY", placeholder: "Film · Series · Documentary · Style" },
+  {
+    label: "> CATEGORY",
+    placeholder: "Select a category",
+    options: ["Film", "Series", "Documentary", "Style"],
+  },
   { label: "> LINK", placeholder: "Screener URL" },
 ];
 
@@ -20,7 +26,7 @@ export function SubmissionConsole() {
   return (
     <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
-        <SectionLabel code="05" title="Open a Channel" />
+        <SectionLabel code="05" title="Join the AI Cinema Movement" />
 
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           {/* Terminal card */}
@@ -41,11 +47,27 @@ export function SubmissionConsole() {
                     <span className="font-mono block text-[10px] uppercase tracking-[0.3em] text-cyan-glow/70">
                       {f.label}
                     </span>
-                    <input
-                      type="text"
-                      placeholder={f.placeholder}
-                      className="font-mono mt-2 w-full rounded-md border border-violet-glow/30 bg-void/60 px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow/50"
-                    />
+                    {f.options ? (
+                      <select
+                        defaultValue=""
+                        className="font-mono mt-2 w-full rounded-md border border-violet-glow/30 bg-void/60 px-3 py-3 text-sm text-foreground focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow/50"
+                      >
+                        <option value="" disabled>
+                          {f.placeholder}
+                        </option>
+                        {f.options.map((opt) => (
+                          <option key={opt} value={opt} className="bg-void text-foreground">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        type="text"
+                        placeholder={f.placeholder}
+                        className="font-mono mt-2 w-full rounded-md border border-violet-glow/30 bg-void/60 px-3 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow/50"
+                      />
+                    )}
                   </label>
                 ))}
                 <label className="block md:col-span-2">
@@ -66,7 +88,7 @@ export function SubmissionConsole() {
                 </div>
                 <a
                   href={WATCH_URL}
-                  className="font-display group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-magenta-glow via-violet-glow to-electric px-7 py-3 text-[11px] uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-magenta-glow/60"
+                  className="btn-wave font-display group inline-flex items-center gap-3 rounded-full px-7 py-3 text-[11px] uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-magenta-glow/60 transition hover:brightness-110"
                 >
                   Transmit Submission
                   <span className="transition-transform group-hover:translate-x-1">→</span>

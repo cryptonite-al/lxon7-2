@@ -123,7 +123,7 @@ function MoviePage() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href={watch}
-                  className="font-display group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-glow via-electric to-cyan-glow px-8 py-4 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
+                  className="btn-wave font-display group inline-flex items-center gap-3 rounded-full px-8 py-4 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
                 >
                   Watch Full Film
                   <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -139,13 +139,17 @@ function MoviePage() {
           </div>
         </section>
 
-        {/* Trailer */}
+        {/* Trailer — the big cinema screen */}
         <section className="relative mx-auto max-w-[1400px] px-4 pb-20 md:px-8">
-          <div className="mb-6 flex items-center gap-3">
-            <span className="text-magenta-glow">▶</span>
-            <h2 className="font-display text-lg uppercase tracking-[0.2em] text-foreground">Trailer</h2>
+          {/* ambient glow behind the screen */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[60%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-glow/20 blur-[120px]" />
+          <div className="relative mb-6 flex flex-col items-center gap-2 text-center">
+            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-glow/70">Now screening</span>
+            <h2 className="font-display text-2xl uppercase tracking-[0.15em] text-foreground md:text-3xl">
+              Official Trailer
+            </h2>
           </div>
-          <div className="signal-border relative aspect-video w-full overflow-hidden rounded-xl bg-void">
+          <div className="signal-border relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_0_80px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30">
             {movie.trailerUrl ? (
               <video
                 ref={(el) => { if (el) el.muted = true; }}
@@ -154,7 +158,7 @@ function MoviePage() {
                 controls
                 playsInline
                 preload="metadata"
-                className="h-full w-full object-cover"
+                className="h-full w-full bg-black object-contain"
               />
             ) : (
               // Placeholder until a trailer is uploaded from the backend.

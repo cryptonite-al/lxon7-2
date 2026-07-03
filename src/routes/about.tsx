@@ -11,7 +11,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "The story behind LXON-7 — a broadcast home for AI-native cinema, built to give creators a global stage.",
+          "LXON-7 is an AI film studio — we produce and stream original AI-made cinema, and open our stage to a new wave of AI directors.",
       },
       { property: "og:title", content: "Our Story · LXON-7" },
       { property: "og:description", content: "The vision and the people behind LXON-7." },
@@ -21,20 +21,19 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-// ── PLACEHOLDER COPY ─────────────────────────────────────────────────────────
-// Swap the text below for the client's real About / founder copy.
+// Founder bios — adapted from the founders' Bold Vision profiles to the LXON-7 vision.
 const FOUNDERS = [
   {
     name: "King'Juma",
-    role: "Co-Founder",
+    role: "Co-Founder · Creator & Producer",
     initial: "K",
-    bio: "Placeholder bio — replace with King'Juma's real story: background, why LXON-7, and the vision for AI-native cinema.",
+    bio: "A Dallas-born creator, entrepreneur, and community builder, King'Juma has spent his life turning opportunity into art — across theater, independent film, music, and podcasting. His guiding line, \u201cnever wait on opportunity, always create opportunity,\u201d is the engine behind LXON-7: a studio and platform built to give a new generation of AI filmmakers a global stage. He is focused on building something that outlives him — amplifying overlooked voices and proving AI cinema can be both bold and deeply human.",
   },
   {
     name: "Dear Derrick",
-    role: "Co-Founder",
+    role: "Co-Founder · Filmmaker & Producer",
     initial: "D",
-    bio: "Placeholder bio — replace with Dear Derrick's real story and role in building the LXON-7 platform.",
+    bio: "Born and raised in Dallas, Dear Derrick turned a childhood of hardship into a 25-year career in film as a writer, actor, and producer — founding his first production company in 2001 and later selling a film library to a major distributor. A self-taught storyteller who wrote every word himself, he now brings that same courage-to-create to LXON-7, using AI to keep making cinema for the overlooked and underestimated. For Derrick, filmmaking has always been freedom; AI is simply the next frontier of it.",
   },
 ];
 
@@ -52,15 +51,15 @@ function AboutPage() {
           <section className="py-20 md:py-28">
             <Kicker>Our Story</Kicker>
             <h1 className="font-display mt-5 max-w-4xl text-4xl uppercase leading-[1.05] tracking-tight md:text-6xl">
-              <span className="text-gradient-signal">A broadcast channel</span>
+              <span className="text-gradient-signal">An AI film studio,</span>
               <br />
-              for AI-native cinema.
+              built for the future of cinema.
             </h1>
-            {/* PLACEHOLDER COPY — replace with the client's real brand story. */}
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              LXON-7 is a streaming home for AI-generated films, series, documentaries, and style —
-              built to give a new generation of creators a global stage. This is placeholder copy;
-              replace it with the real brand story and mission.
+              LXON-7 is an AI film studio. We produce and stream original AI-made cinema — feature
+              films, mini-series, documentaries, and style shorts — and open our stage to a new
+              wave of AI directors. Every frame is generated, not filmed: a new visual grammar
+              shaped by machine intelligence and human vision.
             </p>
           </section>
 
@@ -70,16 +69,16 @@ function AboutPage() {
             <div className="grid gap-6 md:grid-cols-3">
               {[
                 {
-                  h: "Champion creators",
-                  p: "Give AI filmmakers worldwide a premium place to be seen and discovered.",
+                  h: "Produce AI cinema",
+                  p: "We make original AI-generated films, series, documentaries, and style work — the studio is the storyteller.",
                 },
                 {
                   h: "Curate the signal",
-                  p: "Surface the best AI-native films, series, docs, and style — cleanly presented.",
+                  p: "Alongside our own work, we champion a new wave of AI directors and give their best work a premium home.",
                 },
                 {
                   h: "Stream worldwide",
-                  p: "One cinematic front door; watching and subscriptions handled seamlessly.",
+                  p: "Our films reach audiences across the globe, delivered through trusted streaming partners.",
                 },
               ].map((c) => (
                 <CornerFrame
@@ -100,18 +99,20 @@ function AboutPage() {
               {FOUNDERS.map((f) => (
                 <div
                   key={f.name}
-                  className="flex gap-5 rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6"
+                  className="rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6 md:p-7"
                 >
-                  <div className="font-display flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-violet-glow/50 bg-violet-glow/10 text-xl text-cyan-glow shadow-[0_0_30px_-10px] shadow-violet-glow">
-                    {f.initial}
-                  </div>
-                  <div>
-                    <h3 className="font-display text-lg uppercase tracking-wide text-foreground">{f.name}</h3>
-                    <div className="font-mono mt-0.5 text-[10px] uppercase tracking-[0.3em] text-cyan-glow/70">
-                      {f.role}
+                  <div className="flex items-center gap-4">
+                    <div className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-violet-glow/50 bg-violet-glow/10 text-xl text-cyan-glow shadow-[0_0_30px_-10px] shadow-violet-glow">
+                      {f.initial}
                     </div>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{f.bio}</p>
+                    <div>
+                      <h3 className="font-display text-lg uppercase tracking-wide text-foreground">{f.name}</h3>
+                      <div className="font-mono mt-0.5 text-[10px] uppercase tracking-[0.3em] text-cyan-glow/70">
+                        {f.role}
+                      </div>
+                    </div>
                   </div>
+                  <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{f.bio}</p>
                 </div>
               ))}
             </div>
@@ -126,21 +127,21 @@ function AboutPage() {
                   Join the <span className="text-gradient-flare">signal</span>.
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground md:text-base">
-                  Creators — submit your work. Viewers — start watching AI-native cinema now.
+                  Watch our cinema, or bring your own AI films to the LXON-7 stage.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                  <Link
-                    to="/apply"
-                    className="font-display rounded-full border border-violet-glow/60 bg-violet-glow/15 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"
-                  >
-                    Submit Your Film
-                  </Link>
                   <a
                     href={WATCH_URL}
-                    className="font-display rounded-full border border-cyan-glow/50 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-cyan-glow transition hover:bg-cyan-glow/10"
+                    className="btn-wave font-display rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
                   >
                     Start Watching →
                   </a>
+                  <Link
+                    to="/apply"
+                    className="font-display rounded-full border border-violet-glow/60 bg-violet-glow/10 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"
+                  >
+                    Submit Your Film
+                  </Link>
                 </div>
               </div>
             </div>
