@@ -1,11 +1,37 @@
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/lxon7-logo-new.png";
-import { WATCH_URL } from "@/lib/lxon-content";
 
+// Internal links resolve via TanStack Router; anything starting with "http" is external.
 const COLUMNS = [
-  { title: "Browse", links: ["Films", "Series", "Docs", "Style"] },
-  { title: "Studio", links: ["Submit", "Creators", "Press"] },
-  { title: "Legal", links: ["Terms", "Privacy", "Cookies"] },
-];
+  {
+    title: "Browse",
+    links: [
+      { label: "All Content", to: "/browse" },
+      { label: "Films", to: "/films" },
+      { label: "Series", to: "/series" },
+      { label: "Documentaries", to: "/documentaries" },
+      { label: "Style", to: "/style" },
+    ],
+  },
+  {
+    title: "Studio",
+    links: [
+      { label: "Submit Your Film", to: "/apply" },
+      { label: "Our Story", to: "/about" },
+      { label: "Contact", to: "/contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
+      { label: "Copyright", to: "/copyright" },
+    ],
+  },
+] as const;
+
+const linkClass = "text-sm text-muted-foreground transition-colors hover:text-foreground";
 
 export function SiteFooter() {
   return (
@@ -17,7 +43,9 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1.6fr_1fr]">
           {/* Logo + tagline */}
           <div>
-            <img src={logo} alt="LXON-7" className="h-20 w-auto md:h-24" />
+            <Link to="/" className="inline-flex">
+              <img src={logo} alt="LXON-7" className="h-20 w-auto md:h-24" />
+            </Link>
             <p className="mt-5 max-w-xs text-sm text-muted-foreground">
               A broadcast channel for AI-native cinema.
             </p>
@@ -36,13 +64,10 @@ export function SiteFooter() {
                 </div>
                 <ul className="space-y-2">
                   {col.links.map((l) => (
-                    <li key={l}>
-                      <a
-                        href={WATCH_URL}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {l}
-                      </a>
+                    <li key={l.label}>
+                      <Link to={l.to} className={linkClass}>
+                        {l.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -55,12 +80,12 @@ export function SiteFooter() {
             <div className="font-display mb-4 text-[10px] uppercase tracking-[0.3em] text-cyan-glow/80">
               / Investor Relations
             </div>
-            <a
-              href={WATCH_URL}
+            <Link
+              to="/investor"
               className="font-display inline-flex w-fit items-center gap-2 rounded-full border border-violet-glow/60 bg-violet-glow/10 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-foreground transition hover:bg-violet-glow/25"
             >
-              Request Deck →
-            </a>
+              Investor Relations →
+            </Link>
           </div>
         </div>
 

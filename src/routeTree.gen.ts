@@ -9,12 +9,79 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as StyleRouteImport } from './routes/style'
+import { Route as SeriesRouteImport } from './routes/series'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as InvestorRouteImport } from './routes/investor'
+import { Route as FilmsRouteImport } from './routes/films'
+import { Route as DocumentariesRouteImport } from './routes/documentaries'
+import { Route as CopyrightRouteImport } from './routes/copyright'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MovieSlugRouteImport } from './routes/movie.$slug'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StyleRoute = StyleRouteImport.update({
+  id: '/style',
+  path: '/style',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeriesRoute = SeriesRouteImport.update({
+  id: '/series',
+  path: '/series',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestorRoute = InvestorRouteImport.update({
+  id: '/investor',
+  path: '/investor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilmsRoute = FilmsRouteImport.update({
+  id: '/films',
+  path: '/films',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocumentariesRoute = DocumentariesRouteImport.update({
+  id: '/documentaries',
+  path: '/documentaries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CopyrightRoute = CopyrightRouteImport.update({
+  id: '/copyright',
+  path: '/copyright',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrowseRoute = BrowseRouteImport.update({
+  id: '/browse',
+  path: '/browse',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApplyRoute = ApplyRouteImport.update({
   id: '/apply',
   path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,40 +89,213 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovieSlugRoute = MovieSlugRouteImport.update({
+  id: '/movie/$slug',
+  path: '/movie/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/browse': typeof BrowseRoute
+  '/contact': typeof ContactRoute
+  '/copyright': typeof CopyrightRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/investor': typeof InvestorRoute
+  '/privacy': typeof PrivacyRoute
+  '/series': typeof SeriesRoute
+  '/style': typeof StyleRoute
+  '/terms': typeof TermsRoute
+  '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/browse': typeof BrowseRoute
+  '/contact': typeof ContactRoute
+  '/copyright': typeof CopyrightRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/investor': typeof InvestorRoute
+  '/privacy': typeof PrivacyRoute
+  '/series': typeof SeriesRoute
+  '/style': typeof StyleRoute
+  '/terms': typeof TermsRoute
+  '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/apply': typeof ApplyRoute
+  '/browse': typeof BrowseRoute
+  '/contact': typeof ContactRoute
+  '/copyright': typeof CopyrightRoute
+  '/documentaries': typeof DocumentariesRoute
+  '/films': typeof FilmsRoute
+  '/investor': typeof InvestorRoute
+  '/privacy': typeof PrivacyRoute
+  '/series': typeof SeriesRoute
+  '/style': typeof StyleRoute
+  '/terms': typeof TermsRoute
+  '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/apply'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/browse'
+    | '/contact'
+    | '/copyright'
+    | '/documentaries'
+    | '/films'
+    | '/investor'
+    | '/privacy'
+    | '/series'
+    | '/style'
+    | '/terms'
+    | '/movie/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/apply'
-  id: '__root__' | '/' | '/apply'
+  to:
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/browse'
+    | '/contact'
+    | '/copyright'
+    | '/documentaries'
+    | '/films'
+    | '/investor'
+    | '/privacy'
+    | '/series'
+    | '/style'
+    | '/terms'
+    | '/movie/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/apply'
+    | '/browse'
+    | '/contact'
+    | '/copyright'
+    | '/documentaries'
+    | '/films'
+    | '/investor'
+    | '/privacy'
+    | '/series'
+    | '/style'
+    | '/terms'
+    | '/movie/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   ApplyRoute: typeof ApplyRoute
+  BrowseRoute: typeof BrowseRoute
+  ContactRoute: typeof ContactRoute
+  CopyrightRoute: typeof CopyrightRoute
+  DocumentariesRoute: typeof DocumentariesRoute
+  FilmsRoute: typeof FilmsRoute
+  InvestorRoute: typeof InvestorRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SeriesRoute: typeof SeriesRoute
+  StyleRoute: typeof StyleRoute
+  TermsRoute: typeof TermsRoute
+  MovieSlugRoute: typeof MovieSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/style': {
+      id: '/style'
+      path: '/style'
+      fullPath: '/style'
+      preLoaderRoute: typeof StyleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/series': {
+      id: '/series'
+      path: '/series'
+      fullPath: '/series'
+      preLoaderRoute: typeof SeriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investor': {
+      id: '/investor'
+      path: '/investor'
+      fullPath: '/investor'
+      preLoaderRoute: typeof InvestorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/films': {
+      id: '/films'
+      path: '/films'
+      fullPath: '/films'
+      preLoaderRoute: typeof FilmsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/documentaries': {
+      id: '/documentaries'
+      path: '/documentaries'
+      fullPath: '/documentaries'
+      preLoaderRoute: typeof DocumentariesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/copyright': {
+      id: '/copyright'
+      path: '/copyright'
+      fullPath: '/copyright'
+      preLoaderRoute: typeof CopyrightRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/browse': {
+      id: '/browse'
+      path: '/browse'
+      fullPath: '/browse'
+      preLoaderRoute: typeof BrowseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/apply': {
       id: '/apply'
       path: '/apply'
       fullPath: '/apply'
       preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -65,12 +305,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movie/$slug': {
+      id: '/movie/$slug'
+      path: '/movie/$slug'
+      fullPath: '/movie/$slug'
+      preLoaderRoute: typeof MovieSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   ApplyRoute: ApplyRoute,
+  BrowseRoute: BrowseRoute,
+  ContactRoute: ContactRoute,
+  CopyrightRoute: CopyrightRoute,
+  DocumentariesRoute: DocumentariesRoute,
+  FilmsRoute: FilmsRoute,
+  InvestorRoute: InvestorRoute,
+  PrivacyRoute: PrivacyRoute,
+  SeriesRoute: SeriesRoute,
+  StyleRoute: StyleRoute,
+  TermsRoute: TermsRoute,
+  MovieSlugRoute: MovieSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
