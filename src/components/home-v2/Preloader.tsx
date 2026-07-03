@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import spotlight from "@/assets/spotlight-loop.mp4";
+import spotlightPoster from "@/assets/spotlight-poster.jpg";
 
 // Intro preloader — plays the branded spotlight loop over the homepage once per
 // browser session, then fades to reveal the page. Returning to the homepage in
@@ -55,28 +56,21 @@ export function Preloader() {
     <div
       role="presentation"
       aria-hidden="true"
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-void transition-opacity duration-700 ease-out ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-700 ease-out ${
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
-      <div className="starfield pointer-events-none absolute inset-0 opacity-30" />
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-glow/20 blur-[90px]" />
-      <div className="relative flex flex-col items-center gap-4">
-        <div className="relative w-[200px] overflow-hidden rounded-2xl ring-1 ring-violet-glow/30 shadow-[0_0_60px_-12px] shadow-violet-glow/60 sm:w-[260px]">
-          <video
-            ref={videoRef}
-            src={spotlight}
-            autoPlay
-            muted
-            playsInline
-            loop
-            className="h-auto w-full object-contain"
-          />
-        </div>
-        <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-glow/70">
-          LXON-7
-        </span>
-      </div>
+      <video
+        ref={videoRef}
+        src={spotlight}
+        poster={spotlightPoster}
+        autoPlay
+        muted
+        playsInline
+        loop
+        preload="auto"
+        className="w-[220px] max-w-[72vw] object-contain sm:w-[300px]"
+      />
     </div>
   );
 }

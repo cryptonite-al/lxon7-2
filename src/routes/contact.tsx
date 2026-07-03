@@ -4,6 +4,7 @@ import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker } from "@/components/home-v2/primitives";
+import { siteEmail } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -17,11 +18,9 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-// Where the form sends. Replace with the real inbox.
-// NOTE: this form has no backend — on submit it opens the visitor's email client
-// via a mailto: link. To collect messages server-side instead, wire a form
-// service (e.g. Formspree) here and POST to it.
-const CONTACT_EMAIL = "[hello@lxon-7.com]";
+// Central config drives this. When the email is empty the send UI hides.
+// (No backend — with an email set, submit opens the visitor's mail client.)
+const CONTACT_EMAIL = siteEmail("contact");
 
 const inputClass =
   "w-full rounded-lg border border-violet-glow/25 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 outline-none transition focus:border-cyan-glow/60";
@@ -31,10 +30,11 @@ function ContactPage() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const to = CONTACT_EMAIL.replace(/[[\]]/g, "");
-  const mailto = `mailto:${to}?subject=${encodeURIComponent(
-    `LXON-7 enquiry from ${name || "website"}`,
-  )}&body=${encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`)}`;
+  const mailto = CONTACT_EMAIL
+    ? `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+        `LXON-7 enquiry from ${name || "website"}`,
+      )}&body=${encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`)}`
+    : "";
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -77,15 +77,23 @@ function ContactPage() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            <a
-              href={mailto}
-              className="btn-wave font-display inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
-            >
-              Send Message →
-            </a>
-            <p className="font-mono mt-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
-              Or email us directly · {CONTACT_EMAIL}
-            </p>
+            {CONTACT_EMAIL ? (
+              <>
+                <a
+                  href={mailto}
+                  className="btn-wave font-display inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
+                >
+                  Send Message →
+                </a>
+                <p className="font-mono mt-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
+                  Or email us directly · {CONTACT_EMAIL}
+                </p>
+              </>
+            ) : (
+              <p className="font-mono mt-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
+                Contact details coming soon
+              </p>
+            )}
           </div>
         </div>
       </main>

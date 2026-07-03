@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection } from "@/components/home-v2/LegalLayout";
+import { siteEmail, governingLaw } from "@/lib/site";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -70,8 +71,10 @@ function PrivacyPage() {
 
       <LegalSection heading="Contact">
         <p>
-          Questions about this policy? Contact us at [privacy@lxon-7.com]. Governing law and
-          jurisdiction: [jurisdiction].
+          {siteEmail("privacy")
+            ? `Questions about this policy? Contact us at ${siteEmail("privacy")}.`
+            : "Questions about this policy? Contact us through this website."}{" "}
+          Governed by {governingLaw()}.
         </p>
       </LegalSection>
     </LegalLayout>

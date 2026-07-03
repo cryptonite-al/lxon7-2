@@ -3,6 +3,7 @@ import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker, SectionLabel, CornerFrame } from "@/components/home-v2/primitives";
+import { siteEmail } from "@/lib/site";
 
 export const Route = createFileRoute("/investor")({
   head: () => ({
@@ -20,8 +21,8 @@ export const Route = createFileRoute("/investor")({
   component: InvestorPage,
 });
 
-// Contact for investor enquiries — replace with the real address.
-const INVESTOR_EMAIL = "[investors@lxon-7.com]";
+// Investor enquiries email — from central config (empty → line hides).
+const INVESTOR_EMAIL = siteEmail("investors");
 
 function InvestorPage() {
   return (
@@ -80,26 +81,38 @@ function InvestorPage() {
             </div>
           </section>
 
-          {/* Request the deck */}
+          {/* Download the deck */}
           <section className="py-16 md:py-24">
             <div className="relative overflow-hidden rounded-2xl border border-violet-glow/25 bg-gradient-to-br from-violet-glow/10 to-transparent p-10 text-center md:p-14">
               <div className="starfield absolute inset-0 opacity-30" />
               <div className="relative">
                 <h2 className="font-display text-2xl uppercase tracking-wide md:text-3xl">
-                  Request the <span className="text-gradient-flare">investor deck</span>
+                  Download the <span className="text-gradient-flare">investor deck</span>
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground md:text-base">
-                  For the full deck and financials, get in touch with our team.
+                  The full LXON-7 vision, business model, and roadmap.
                 </p>
-                <a
-                  href={`mailto:${INVESTOR_EMAIL.replace(/[[\]]/g, "")}?subject=LXON-7 Investor Deck Request`}
-                  className="font-display mt-8 inline-flex items-center gap-2 rounded-full border border-violet-glow/60 bg-violet-glow/15 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"
-                >
-                  Request Deck →
-                </a>
-                <p className="font-mono mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
-                  {INVESTOR_EMAIL}
-                </p>
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                  <a
+                    href="/assets/LXON-7-Investor-Deck.pdf"
+                    download
+                    className="btn-wave font-display inline-flex items-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
+                  >
+                    Download Investor Deck (PDF) →
+                  </a>
+                  <a
+                    href="/assets/LXON-7-Investor-Deck.pptx"
+                    download
+                    className="font-display inline-flex items-center gap-2 rounded-full border border-violet-glow/60 bg-violet-glow/10 px-5 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"
+                  >
+                    PPTX
+                  </a>
+                </div>
+                {INVESTOR_EMAIL && (
+                  <p className="font-mono mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
+                    Questions? {INVESTOR_EMAIL}
+                  </p>
+                )}
               </div>
             </div>
           </section>

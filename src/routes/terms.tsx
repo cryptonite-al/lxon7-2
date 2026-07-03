@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection } from "@/components/home-v2/LegalLayout";
+import { siteEmail, governingLaw } from "@/lib/site";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -68,7 +69,11 @@ function TermsPage() {
       <LegalSection heading="Changes & contact">
         <p>
           We may update these terms from time to time; continued use of the site means you accept
-          the updated terms. Questions: [legal@lxon-7.com]. Governing law: [jurisdiction].
+          the updated terms.{" "}
+          {siteEmail("legal")
+            ? `Questions: ${siteEmail("legal")}.`
+            : "For questions, contact us through this website."}{" "}
+          Governed by {governingLaw()}.
         </p>
       </LegalSection>
     </LegalLayout>

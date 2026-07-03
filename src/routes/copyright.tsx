@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalLayout, LegalSection } from "@/components/home-v2/LegalLayout";
+import { siteEmail, governingLaw } from "@/lib/site";
 
 export const Route = createFileRoute("/copyright")({
   head: () => ({
@@ -52,7 +53,10 @@ function CopyrightPage() {
 
       <LegalSection heading="Infringement claims / takedown">
         <p>
-          If you believe content on LXON-7 infringes your rights, contact us at [copyright@lxon-7.com]
+          If you believe content on LXON-7 infringes your rights,{" "}
+          {siteEmail("copyright")
+            ? `contact us at ${siteEmail("copyright")}`
+            : "contact us through this website"}{" "}
           with a description of the work, the allegedly infringing material and its location, your
           contact information, and a statement of good-faith belief. We will review and respond,
           and may remove content while a claim is assessed.
@@ -67,7 +71,12 @@ function CopyrightPage() {
       </LegalSection>
 
       <LegalSection heading="Contact">
-        <p>Copyright questions and notices: [copyright@lxon-7.com]. Governing law: [jurisdiction].</p>
+        <p>
+          {siteEmail("copyright")
+            ? `Copyright questions and notices: ${siteEmail("copyright")}.`
+            : "Copyright questions and notices can be sent through this website."}{" "}
+          Governed by {governingLaw()}.
+        </p>
       </LegalSection>
     </LegalLayout>
   );
