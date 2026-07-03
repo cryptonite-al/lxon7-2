@@ -5,7 +5,7 @@ import spotlight from "@/assets/spotlight-loop.mp4";
 // browser session, then fades to reveal the page. Returning to the homepage in
 // the same session skips it. Honours prefers-reduced-motion (skips entirely).
 const KEY = "lxon7_preloaded";
-const HOLD_MS = 2800; // visible time before fade
+const HOLD_MS = 5000; // visible time before fade (≥5s so the clip is watchable)
 const FADE_MS = 700; // fade-out duration (keep in sync with duration-700 below)
 
 export function Preloader() {
@@ -59,17 +59,24 @@ export function Preloader() {
         fading ? "opacity-0" : "opacity-100"
       }`}
     >
-      <video
-        ref={videoRef}
-        src={spotlight}
-        autoPlay
-        muted
-        playsInline
-        loop
-        className="h-full w-full object-cover"
-      />
       <div className="starfield pointer-events-none absolute inset-0 opacity-30" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-void/10 via-transparent to-void/60" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-glow/20 blur-[90px]" />
+      <div className="relative flex flex-col items-center gap-4">
+        <div className="relative w-[200px] overflow-hidden rounded-2xl ring-1 ring-violet-glow/30 shadow-[0_0_60px_-12px] shadow-violet-glow/60 sm:w-[260px]">
+          <video
+            ref={videoRef}
+            src={spotlight}
+            autoPlay
+            muted
+            playsInline
+            loop
+            className="h-auto w-full object-contain"
+          />
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-glow/70">
+          LXON-7
+        </span>
+      </div>
     </div>
   );
 }
