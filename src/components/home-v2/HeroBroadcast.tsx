@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroVideo from "@/assets/spotlight-loop.mp4";
+import heroVideo from "@/assets/hero-bg.mp4";
 import heroPoster from "@/assets/hero-poster.jpg";
 import { WATCH_URL, METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
@@ -8,33 +8,24 @@ import { Kicker } from "./primitives";
 export function HeroBroadcast() {
   return (
     <section id="top" className="relative overflow-hidden">
-      {/* Background visual — the full face, centered and contained so it's never cut off.
-          Desktop: autoplaying video. Mobile: crisp still image (reliable regardless of
-          the device's low-power/data-saver autoplay blocking). */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        {/* Mobile: poster still (video autoplay is unreliable on phones in low-power mode) */}
-        <img
-          src={heroPoster}
-          alt=""
-          className="h-full w-auto max-w-none object-contain opacity-90 md:hidden"
-        />
-        {/* Desktop: autoplaying video, contained so the whole face shows */}
-        <video
-          ref={(el) => {
-            if (el) el.muted = true;
-          }}
-          src={heroVideo}
-          poster={heroPoster}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="hidden h-full w-auto max-w-none object-contain opacity-90 md:block"
-        />
-      </div>
+      {/* Background visual.
+          Desktop: autoplaying video, object-cover (full-bleed, immersive).
+          Mobile: object-contain so the whole frame is visible and never cut off. */}
+      <video
+        ref={(el) => {
+          if (el) el.muted = true;
+        }}
+        src={heroVideo}
+        poster={heroPoster}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="pointer-events-none absolute inset-0 h-full w-full object-contain opacity-95 md:object-cover"
+      />
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background/85" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/35 to-background/85" />
       <div className="starfield absolute inset-0 opacity-25" />
       <div className="scanlines pointer-events-none absolute inset-0 opacity-10" />
       <div className="pointer-events-none absolute -left-40 top-1/4 h-[500px] w-[500px] rounded-full bg-violet-glow/25 blur-[120px]" />
@@ -42,7 +33,7 @@ export function HeroBroadcast() {
 
       <div className="relative mx-auto max-w-[1400px] px-4 pt-16 md:px-8 md:pt-24 lg:pt-28">
         <div className="mb-6 flex flex-wrap items-center gap-4">
-          <Kicker>Transmission 001 · MMXXVI</Kicker>
+          <Kicker>Transmission 001 &#183; MMXXVI</Kicker>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
             48° 51&#8242; N &#183; 002° 21&#8242; E
           </span>
@@ -57,7 +48,9 @@ export function HeroBroadcast() {
           <span className="block text-foreground">LXON-7</span>
           <span className="block">
             <span className="text-foreground">AI </span>
-            <span className="text-gradient-signal">Streaming Service </span>
+            <span className="bg-gradient-to-r from-cyan-glow via-electric to-cyan-glow bg-clip-text text-transparent">
+              Streaming Service
+            </span>
           </span>
           <span className="block text-gradient-flare">worldwide.</span>
         </motion.h1>
