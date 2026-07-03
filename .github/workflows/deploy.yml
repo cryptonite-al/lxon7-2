@@ -1,0 +1,76 @@
+name: Deploy to Hostinger
+
+# Builds the static site and uploads it to Hostinger shared hosting over FTP.
+#
+# SAFETY: this only ever touches the single folder named by the FTP_SERVER_DIR
+# secret (the folder you designate for this frontend, e.g. "public_html/" if
+# this site owns the account, or a subfolder like "public_html/lxon7/"). The
+# FTP action syncs ONLY that directory, so it never mirrors or deletes files
+# outside it. WordPress paths are additionally listed under `exclude` as a
+# belt-and-suspenders guard, so even a misconfigured FTP_SERVER_DIR cannot
+# delete a WordPress install sharing the same account.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER      - FTP host, e.g. ftp.your-domain.com
+#   FTP_USERNAME    - FTP account username
+#   FTP_PASSWORD    - FTP account password
+#   FTP_SERVER_DIR  - Target folder on the server, WITH a trailing slash,
+#                     e.g. "public_html/"  (must be a folder dedicated to this
+#                     site, NOT the WordPress root)
+
+on:
+  push:
+    branches: [main]
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+# Never run two deploys at once; cancel an in-flight deploy if a newer push lands.
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build static site
+        run: bun run build
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Only the built output is uploaded.
+          local-dir: ./dist/
+          # Only this folder on the server is managed/synced. Nothing outside
+          # it is ever read, written, or deleted.
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          # Incremental sync (default). Never wipe the remote folder first.
+          dangerous-clean-slate: false
+          # Extra guard: never upload or delete WordPress files, even if
+          # FTP_SERVER_DIR is ever pointed at a shared WordPress root.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            wp-admin/**
+            wp-includes/**
+            wp-content/**
+            wp-config.php
+            wp-login.php
+            wp-*.php
+            xmlrpc.php
+            .maintenance
