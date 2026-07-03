@@ -7,7 +7,9 @@ import { Kicker } from "./primitives";
 
 export function HeroBroadcast() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" className="relative overflow-hidden bg-void">
+      {/* Solid dark base so nothing shows through the contain gaps on mobile */}
+      <div className="pointer-events-none absolute inset-0 bg-void" />
       {/* Background visual.
           Desktop: autoplaying video, object-cover (full-bleed, immersive).
           Mobile: object-contain so the whole frame is visible and never cut off. */}
