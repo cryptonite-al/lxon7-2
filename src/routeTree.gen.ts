@@ -23,6 +23,8 @@ import { Route as ApplyRouteImport } from './routes/apply'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MovieSlugRouteImport } from './routes/movie.$slug'
+import { Route as FoundersJumaRouteImport } from './routes/founders.juma'
+import { Route as FoundersDearDerrickRouteImport } from './routes/founders.dear-derrick'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -94,6 +96,16 @@ const MovieSlugRoute = MovieSlugRouteImport.update({
   path: '/movie/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FoundersJumaRoute = FoundersJumaRouteImport.update({
+  id: '/founders/juma',
+  path: '/founders/juma',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoundersDearDerrickRoute = FoundersDearDerrickRouteImport.update({
+  id: '/founders/dear-derrick',
+  path: '/founders/dear-derrick',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -109,6 +121,8 @@ export interface FileRoutesByFullPath {
   '/series': typeof SeriesRoute
   '/style': typeof StyleRoute
   '/terms': typeof TermsRoute
+  '/founders/dear-derrick': typeof FoundersDearDerrickRoute
+  '/founders/juma': typeof FoundersJumaRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesByTo {
@@ -125,6 +139,8 @@ export interface FileRoutesByTo {
   '/series': typeof SeriesRoute
   '/style': typeof StyleRoute
   '/terms': typeof TermsRoute
+  '/founders/dear-derrick': typeof FoundersDearDerrickRoute
+  '/founders/juma': typeof FoundersJumaRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRoutesById {
@@ -142,6 +158,8 @@ export interface FileRoutesById {
   '/series': typeof SeriesRoute
   '/style': typeof StyleRoute
   '/terms': typeof TermsRoute
+  '/founders/dear-derrick': typeof FoundersDearDerrickRoute
+  '/founders/juma': typeof FoundersJumaRoute
   '/movie/$slug': typeof MovieSlugRoute
 }
 export interface FileRouteTypes {
@@ -160,6 +178,8 @@ export interface FileRouteTypes {
     | '/series'
     | '/style'
     | '/terms'
+    | '/founders/dear-derrick'
+    | '/founders/juma'
     | '/movie/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -176,6 +196,8 @@ export interface FileRouteTypes {
     | '/series'
     | '/style'
     | '/terms'
+    | '/founders/dear-derrick'
+    | '/founders/juma'
     | '/movie/$slug'
   id:
     | '__root__'
@@ -192,6 +214,8 @@ export interface FileRouteTypes {
     | '/series'
     | '/style'
     | '/terms'
+    | '/founders/dear-derrick'
+    | '/founders/juma'
     | '/movie/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -209,6 +233,8 @@ export interface RootRouteChildren {
   SeriesRoute: typeof SeriesRoute
   StyleRoute: typeof StyleRoute
   TermsRoute: typeof TermsRoute
+  FoundersDearDerrickRoute: typeof FoundersDearDerrickRoute
+  FoundersJumaRoute: typeof FoundersJumaRoute
   MovieSlugRoute: typeof MovieSlugRoute
 }
 
@@ -312,6 +338,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MovieSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/founders/juma': {
+      id: '/founders/juma'
+      path: '/founders/juma'
+      fullPath: '/founders/juma'
+      preLoaderRoute: typeof FoundersJumaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/founders/dear-derrick': {
+      id: '/founders/dear-derrick'
+      path: '/founders/dear-derrick'
+      fullPath: '/founders/dear-derrick'
+      preLoaderRoute: typeof FoundersDearDerrickRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -329,6 +369,8 @@ const rootRouteChildren: RootRouteChildren = {
   SeriesRoute: SeriesRoute,
   StyleRoute: StyleRoute,
   TermsRoute: TermsRoute,
+  FoundersDearDerrickRoute: FoundersDearDerrickRoute,
+  FoundersJumaRoute: FoundersJumaRoute,
   MovieSlugRoute: MovieSlugRoute,
 }
 export const routeTree = rootRouteImport

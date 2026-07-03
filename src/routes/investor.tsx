@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
+import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker, SectionLabel, CornerFrame } from "@/components/home-v2/primitives";
 
 export const Route = createFileRoute("/investor")({
@@ -26,6 +27,7 @@ function InvestorPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
+      <PageBanner accent="rendered into an industry." />
       <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-40" />
         <div className="pointer-events-none absolute -left-40 top-32 h-[500px] w-[500px] rounded-full bg-violet-glow/20 blur-[120px]" />

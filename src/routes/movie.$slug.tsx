@@ -1,15 +1,12 @@
+import { useRef, useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
+import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker } from "@/components/home-v2/primitives";
-import {
-  getMovie,
-  moviesByCategory,
-  CATEGORY_META,
-  WATCH_URL,
-  type Movie,
-} from "@/lib/movies";
+import { getMovie, moviesByCategory, CATEGORY_META, WATCH_URL } from "@/lib/movies";
+import type { Movie } from "@/lib/movies";
 
 export const Route = createFileRoute("/movie/$slug")({
   head: ({ params }) => {
@@ -33,6 +30,7 @@ export const Route = createFileRoute("/movie/$slug")({
   notFoundComponent: () => (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
+      <PageBanner accent="rendered into cinema." />
       <div className="mx-auto max-w-[1400px] px-4 py-40 text-center md:px-8">
         <Kicker>Signal lost</Kicker>
         <h1 className="font-display mt-4 text-4xl uppercase tracking-tight">Transmission not found</h1>
@@ -46,10 +44,11 @@ export const Route = createFileRoute("/movie/$slug")({
 });
 
 function MoviePage() {
-  // The loader returns { movie: Movie } (throwing notFound() for unknown
-  // slugs), but this router version doesn't infer route loader-data types, so
-  // assert the loader's known shape here.
+  // This router version types Route.useLoaderData() as undefined — assert the
+  // loader's known return shape so the file typechecks. (Do not remove.)
   const { movie } = Route.useLoaderData() as { movie: Movie };
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
   const cat = CATEGORY_META[movie.category];
   const related = moviesByCategory(movie.category).filter((m) => m.slug !== movie.slug).slice(0, 5);
   const watch = movie.watchUrl || WATCH_URL;
@@ -57,7 +56,8 @@ function MoviePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
-      <main className="relative">
+      <PageBanner accent="rendered into cinema." />
+      <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-25" />
 
         {/* Backdrop / hero */}
@@ -151,15 +151,34 @@ function MoviePage() {
           </div>
           <div className="signal-border relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_0_80px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30">
             {movie.trailerUrl ? (
-              <video
-                ref={(el) => { if (el) el.muted = true; }}
-                src={movie.trailerUrl}
-                poster={movie.poster}
-                controls
-                playsInline
-                preload="metadata"
-                className="h-full w-full bg-black object-contain"
-              />
+              <>
+                <video
+                  ref={videoRef}
+                  src={movie.trailerUrl}
+                  poster={movie.poster}
+                  controls={playing}
+                  playsInline
+                  preload="metadata"
+                  className="h-full w-full bg-black object-contain"
+                  onPlay={() => setPlaying(true)}
+                />
+                {!playing && (
+                  <button
+                    type="button"
+                    aria-label="Play trailer"
+                    onClick={() => {
+                      videoRef.current?.play().catch(() => {});
+                      setPlaying(true);
+                    }}
+                    className="group absolute inset-0 flex items-center justify-center"
+                  >
+                    <span className="absolute inset-0 bg-void/40 transition group-hover:bg-void/25" />
+                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-glow/70 bg-void/60 pl-1 text-3xl text-cyan-glow shadow-[0_0_40px_-6px] shadow-cyan-glow/70 backdrop-blur transition group-hover:scale-110 md:h-24 md:w-24">
+                      ▶
+                    </span>
+                  </button>
+                )}
+              </>
             ) : (
               // Placeholder until a trailer is uploaded from the backend.
               <div className="relative flex h-full w-full items-center justify-center">

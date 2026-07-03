@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { TopNav } from "@/components/home-v2/TopNav";
+import { Preloader } from "@/components/home-v2/Preloader";
 import { SignalTicker } from "@/components/home-v2/SignalTicker";
 import { HeroBroadcast } from "@/components/home-v2/HeroBroadcast";
 import { FeaturedSpread } from "@/components/home-v2/FeaturedSpread";
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Preloader />
       <TopNav />
       <main>
         <HeroBroadcast />

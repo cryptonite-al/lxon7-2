@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { WATCH_URL } from "@/lib/lxon-content";
 import { SectionLabel } from "./primitives";
 
@@ -22,8 +23,48 @@ const BULLETS = [
   "Direct pipeline to LXON-7 studio commissioning.",
 ];
 
-export function SubmissionConsole() {
+// Custom, fully-themed dropdown (native <select> option lists can't be dark-themed
+// reliably across browsers, which is why the category picker looked off).
+function CategorySelect({ options, placeholder }: { options: string[]; placeholder: string }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+
   return (
+    <div className="relative mt-2">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        onBlur={() => setTimeout(() => setOpen(false), 120)}
+        className="font-mono flex w-full items-center justify-between rounded-md border border-violet-glow/30 bg-void/60 px-3 py-3 text-sm text-foreground transition focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow/50"
+      >
+        <span className={value ? "text-foreground" : "text-muted-foreground/60"}>
+          {value || placeholder}
+        </span>
+        <span className={`text-cyan-glow/70 transition-transform ${open ? "rotate-180" : ""}`}>▾</span>
+      </button>
+      {open && (
+        <ul className="absolute z-30 mt-1 w-full overflow-hidden rounded-md border border-violet-glow/40 bg-void shadow-[0_20px_60px_-20px] shadow-violet-glow/60">
+          {options.map((opt) => (
+            <li key={opt}>
+              <button
+                type="button"
+                onMouseDown={() => {
+                  setValue(opt);
+                  setOpen(false);
+                }}
+                className="font-mono block w-full px-3 py-2.5 text-left text-sm text-muted-foreground transition-colors hover:bg-violet-glow/15 hover:text-cyan-glow"
+              >
+                {opt}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export function SubmissionConsole() {  return (
     <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
         <SectionLabel code="05" title="Join the AI Cinema Movement" />
@@ -48,19 +89,7 @@ export function SubmissionConsole() {
                       {f.label}
                     </span>
                     {f.options ? (
-                      <select
-                        defaultValue=""
-                        className="font-mono mt-2 w-full rounded-md border border-violet-glow/30 bg-void/60 px-3 py-3 text-sm text-foreground focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow/50"
-                      >
-                        <option value="" disabled>
-                          {f.placeholder}
-                        </option>
-                        {f.options.map((opt) => (
-                          <option key={opt} value={opt} className="bg-void text-foreground">
-                            {opt}
-                          </option>
-                        ))}
-                      </select>
+                      <CategorySelect options={f.options} placeholder={f.placeholder} />
                     ) : (
                       <input
                         type="text"

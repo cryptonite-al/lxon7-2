@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
+import { PageBanner } from "@/components/home-v2/PageBanner";
+import { Reveal } from "@/components/home-v2/Reveal";
 import { Kicker, SectionLabel, CornerFrame } from "@/components/home-v2/primitives";
 import { WATCH_URL } from "@/lib/lxon-content";
 
@@ -27,20 +29,23 @@ const FOUNDERS = [
     name: "King'Juma",
     role: "Co-Founder · Creator & Producer",
     initial: "K",
+    to: "/founders/juma",
     bio: "A Dallas-born creator, entrepreneur, and community builder, King'Juma has spent his life turning opportunity into art — across theater, independent film, music, and podcasting. His guiding line, \u201cnever wait on opportunity, always create opportunity,\u201d is the engine behind LXON-7: a studio and platform built to give a new generation of AI filmmakers a global stage. He is focused on building something that outlives him — amplifying overlooked voices and proving AI cinema can be both bold and deeply human.",
   },
   {
     name: "Dear Derrick",
     role: "Co-Founder · Filmmaker & Producer",
     initial: "D",
+    to: "/founders/dear-derrick",
     bio: "Born and raised in Dallas, Dear Derrick turned a childhood of hardship into a 25-year career in film as a writer, actor, and producer — founding his first production company in 2001 and later selling a film library to a major distributor. A self-taught storyteller who wrote every word himself, he now brings that same courage-to-create to LXON-7, using AI to keep making cinema for the overlooked and underestimated. For Derrick, filmmaking has always been freedom; AI is simply the next frontier of it.",
   },
-];
+] as const;
 
 function AboutPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
+      <PageBanner accent="rendered into a studio." />
       <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-40" />
         <div className="pointer-events-none absolute -left-40 top-32 h-[500px] w-[500px] rounded-full bg-violet-glow/20 blur-[120px]" />
@@ -80,14 +85,13 @@ function AboutPage() {
                   h: "Stream worldwide",
                   p: "Our films reach audiences across the globe, delivered through trusted streaming partners.",
                 },
-              ].map((c) => (
-                <CornerFrame
-                  key={c.h}
-                  className="rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6"
-                >
-                  <h3 className="font-display text-sm uppercase tracking-[0.2em] text-cyan-glow">{c.h}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.p}</p>
-                </CornerFrame>
+              ].map((c, i) => (
+                <Reveal key={c.h} delay={i * 0.08}>
+                  <CornerFrame className="rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6">
+                    <h3 className="font-display text-sm uppercase tracking-[0.2em] text-cyan-glow">{c.h}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.p}</p>
+                  </CornerFrame>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -96,11 +100,12 @@ function AboutPage() {
           <section className="py-10 md:py-16">
             <SectionLabel code="02" title="Founders" />
             <div className="grid gap-6 md:grid-cols-2">
-              {FOUNDERS.map((f) => (
-                <div
-                  key={f.name}
-                  className="rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6 md:p-7"
-                >
+              {FOUNDERS.map((f, i) => (
+                <Reveal key={f.name} delay={i * 0.08}>
+                  <Link
+                    to={f.to}
+                    className="group block rounded-xl border border-violet-glow/15 bg-white/[0.02] p-6 transition hover:border-cyan-glow/40 hover:bg-white/[0.04] md:p-7"
+                  >
                   <div className="flex items-center gap-4">
                     <div className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-violet-glow/50 bg-violet-glow/10 text-xl text-cyan-glow shadow-[0_0_30px_-10px] shadow-violet-glow">
                       {f.initial}
@@ -113,7 +118,11 @@ function AboutPage() {
                     </div>
                   </div>
                   <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{f.bio}</p>
-                </div>
+                  <span className="font-mono mt-4 inline-block text-[10px] uppercase tracking-[0.3em] text-cyan-glow transition group-hover:translate-x-1">
+                    Read full story →
+                  </span>
+                  </Link>
+                </Reveal>
               ))}
             </div>
           </section>

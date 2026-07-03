@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { SubmissionConsole } from "@/components/home-v2/SubmissionConsole";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
+import { PageBanner } from "@/components/home-v2/PageBanner";
 
 export const Route = createFileRoute("/apply")({
   head: () => ({
@@ -28,7 +29,8 @@ function ApplyPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
-      <main className="relative">
+      <PageBanner accent="made by creators like you." />
+      <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-40" />
         <div className="pointer-events-none absolute -left-40 top-40 h-[500px] w-[500px] rounded-full bg-violet-glow/20 blur-[120px]" />
         <div className="pointer-events-none absolute -right-40 bottom-40 h-[500px] w-[500px] rounded-full bg-magenta-glow/20 blur-[120px]" />

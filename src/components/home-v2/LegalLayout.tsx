@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
+import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker } from "@/components/home-v2/primitives";
 
 /**
@@ -24,6 +25,7 @@ export function LegalLayout({
   return (
     <div className="min-h-screen bg-background text-foreground">
       <TopNav />
+      <PageBanner accent="on the record." />
       <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-30" />
         <div className="pointer-events-none absolute -left-40 top-24 h-[420px] w-[420px] rounded-full bg-violet-glow/15 blur-[120px]" />
