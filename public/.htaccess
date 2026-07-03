@@ -1,0 +1,24 @@
+# SPA fallback for Hostinger (Apache) shared hosting.
+# This client-side single-page app has no server runtime: every route is
+# rendered in the browser by TanStack Router. Requests for real files
+# (JS/CSS/images/videos) are served as-is; any other path is rewritten to
+# index.html so deep links like /apply work on refresh instead of 404-ing.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Serve existing files and directories directly.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  # Everything else falls back to the SPA entry point.
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Long-cache fingerprinted build assets; keep HTML uncached so deploys show up.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2?|png|jpe?g|gif|svg|ico|mp4|webm)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
