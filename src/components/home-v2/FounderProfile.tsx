@@ -5,7 +5,6 @@ import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Reveal } from "@/components/home-v2/Reveal";
 import { Kicker, SectionLabel } from "@/components/home-v2/primitives";
-import { WATCH_URL } from "@/lib/lxon-content";
 import type { Founder } from "@/lib/founders";
 
 export function FounderProfile({ founder }: { founder: Founder }) {
@@ -80,12 +79,12 @@ export function FounderProfile({ founder }: { founder: Founder }) {
             >
               ← Back to Our Story
             </Link>
-            <a
-              href={WATCH_URL}
+            <Link
+              to="/browse"
               className="btn-wave font-display rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
             >
               Start Watching →
-            </a>
+            </Link>
           </section>
         </div>
       </main>

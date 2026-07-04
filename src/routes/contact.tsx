@@ -29,6 +29,7 @@ function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [sent, setSent] = useState(false);
 
   const mailto = CONTACT_EMAIL
     ? `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
@@ -77,7 +78,11 @@ function ContactPage() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
             />
-            {CONTACT_EMAIL ? (
+            {sent ? (
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-cyan-glow">
+                Thanks for reaching out — we'll be in touch soon.
+              </p>
+            ) : CONTACT_EMAIL ? (
               <>
                 <a
                   href={mailto}
@@ -90,9 +95,15 @@ function ContactPage() {
                 </p>
               </>
             ) : (
-              <p className="font-mono mt-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
-                Contact details coming soon
-              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  if (name.trim() && message.trim()) setSent(true);
+                }}
+                className="btn-wave font-display inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
+              >
+                Send Message →
+              </button>
             )}
           </div>
         </div>

@@ -6,7 +6,7 @@ import { HeroBroadcast } from "@/components/home-v2/HeroBroadcast";
 import { FeaturedSpread } from "@/components/home-v2/FeaturedSpread";
 import { CategoryDial } from "@/components/home-v2/CategoryDial";
 import { SignalRail } from "@/components/home-v2/SignalRail";
-import { CreatorSpotlight } from "@/components/home-v2/CreatorSpotlight";
+// import { CreatorSpotlight } from "@/components/home-v2/CreatorSpotlight"; // "Meet the Director" — hidden; re-enable here + below
 import { SignalSpotlight } from "@/components/home-v2/SignalSpotlight";
 import { TaglineBand } from "@/components/home-v2/TaglineBand";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
@@ -37,7 +37,9 @@ function Index() {
         <FeaturedSpread />
         <CategoryDial />
         <SignalRail code="03" title="Trending This Week" items={TRENDING} />
-        <CreatorSpotlight />
+        {/* "Meet the Director" is hidden for now. To bring it back: uncomment this line
+            AND the import at the top of this file. Nothing was deleted. */}
+        {/* <CreatorSpotlight /> */}
         <SignalRail code="06" title="Just Added" items={NEW_TRANSMISSIONS} />
         <TaglineBand />
       </main>

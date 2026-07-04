@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CATEGORIES, WATCH_URL } from "@/lib/lxon-content";
+import { Link } from "@tanstack/react-router";
+import { CATEGORIES } from "@/lib/lxon-content";
 import { SectionLabel } from "./primitives";
+
+// Map homepage category ids → the site's category routes.
+const CAT_ROUTE = {
+  films: "/films",
+  series: "/series",
+  docs: "/documentaries",
+  style: "/style",
+} as const;
+type CatId = keyof typeof CAT_ROUTE;
 
 const POSITIONS = [
   { x: 50, y: 8 },
@@ -82,12 +92,12 @@ export function CategoryDial() {
               <div className={`font-display text-6xl ${ACCENT_TEXT[cat.accent]}`}>{cat.code}</div>
               <div className="font-display text-2xl uppercase tracking-widest text-foreground">{cat.name}</div>
               <div className="max-w-[260px] px-4 text-xs text-muted-foreground">{cat.tag}</div>
-              <a
-                href={WATCH_URL}
+              <Link
+                to="/browse"
                 className="font-display mt-2 rounded-full border border-violet-glow/60 bg-void/70 px-5 py-2 text-[10px] uppercase tracking-[0.3em] text-foreground transition hover:bg-violet-glow/20"
               >
                 Browse →
-              </a>
+              </Link>
             </div>
 
             {/* Planet nodes with permanent glow */}
@@ -95,9 +105,9 @@ export function CategoryDial() {
               const p = POSITIONS[i];
               const isActive = i === active;
               return (
-                <button
+                <Link
                   key={c.id}
-                  onClick={() => setActive(i)}
+                  to={CAT_ROUTE[c.id as CatId]}
                   onMouseEnter={() => setActive(i)}
                   className="group absolute -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${p.x}%`, top: `${p.y}%` }}
@@ -119,7 +129,7 @@ export function CategoryDial() {
                       {c.name}
                     </span>
                   </span>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -174,12 +184,12 @@ export function CategoryDial() {
                       className="relative overflow-hidden"
                     >
                       <p className="mt-4 text-sm text-muted-foreground">{c.desc}</p>
-                      <a
-                        href={WATCH_URL}
+                      <Link
+                        to={CAT_ROUTE[c.id as CatId]}
                         className="font-display mt-3 inline-block text-[10px] uppercase tracking-[0.3em] text-magenta-glow"
                       >
                         Browse channel →
-                      </a>
+                      </Link>
                     </motion.div>
                   )}
                 </AnimatePresence>

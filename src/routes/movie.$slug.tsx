@@ -149,7 +149,7 @@ function MoviePage() {
               Official Trailer
             </h2>
           </div>
-          <div className="signal-border relative aspect-video w-full overflow-hidden rounded-2xl bg-black shadow-[0_0_80px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30">
+          <div className="signal-border relative mx-auto aspect-video w-full max-w-2xl overflow-hidden rounded-2xl bg-black shadow-[0_0_80px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30">
             {movie.trailerUrl ? (
               <>
                 <video

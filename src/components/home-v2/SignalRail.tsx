@@ -1,4 +1,5 @@
-import { WATCH_URL } from "@/lib/lxon-content";
+import { Link } from "@tanstack/react-router";
+import { toSlug } from "@/lib/slug";
 import { SectionLabel } from "./primitives";
 
 type Item = { title: string; cat: string; runtime: string; image: string };
@@ -22,9 +23,10 @@ export function SignalRail({
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-24" />
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-4 md:gap-6 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {items.map((item, i) => (
-            <a
+            <Link
               key={i}
-              href={WATCH_URL}
+              to="/movie/$slug"
+              params={{ slug: toSlug(item.title) }}
               className="group signal-border relative w-[220px] shrink-0 snap-start overflow-hidden rounded-xl bg-void md:w-[260px]"
             >
               <div className="relative aspect-[2/3] overflow-hidden">
@@ -53,7 +55,7 @@ export function SignalRail({
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

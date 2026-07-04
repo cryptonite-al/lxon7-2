@@ -4,7 +4,6 @@ import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Reveal } from "@/components/home-v2/Reveal";
 import { Kicker, SectionLabel, CornerFrame } from "@/components/home-v2/primitives";
-import { WATCH_URL } from "@/lib/lxon-content";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -139,12 +138,12 @@ function AboutPage() {
                   Watch our cinema, or bring your own AI films to the LXON-7 stage.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                  <a
-                    href={WATCH_URL}
+                  <Link
+                    to="/browse"
                     className="btn-wave font-display rounded-full px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-void transition hover:brightness-110"
                   >
                     Start Watching →
-                  </a>
+                  </Link>
                   <Link
                     to="/apply"
                     className="font-display rounded-full border border-violet-glow/60 bg-violet-glow/10 px-6 py-3 text-[11px] uppercase tracking-[0.28em] text-foreground transition hover:bg-violet-glow/25"

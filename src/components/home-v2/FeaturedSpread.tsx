@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TRAILERS, WATCH_URL } from "@/lib/lxon-content";
+import { Link } from "@tanstack/react-router";
+import { TRAILERS } from "@/lib/lxon-content";
+import { toSlug } from "@/lib/slug";
 import { CornerFrame, Kicker, SectionLabel } from "./primitives";
 
 export function FeaturedSpread() {
@@ -71,13 +73,14 @@ export function FeaturedSpread() {
             ))}
           </div>
 
-          <a
-            href={WATCH_URL}
-            className="font-display group mt-7 inline-flex w-fit items-center gap-3 rounded-full bg-gradient-to-r from-violet-glow via-electric to-cyan-glow px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70"
+          <Link
+            to="/movie/$slug"
+            params={{ slug: toSlug(movie.label) }}
+            className="btn-wave font-display group mt-7 inline-flex w-fit items-center gap-3 rounded-full px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:brightness-110"
           >
             Watch on LXON-7
             <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
+          </Link>
         </div>
 
         {/* Right: Trailer tabs */}
@@ -104,15 +107,16 @@ export function FeaturedSpread() {
             <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
             <div className="scanlines pointer-events-none absolute inset-0 opacity-30" />
 
-            <button
-              aria-label={`Play ${movie.label} trailer`}
-              onClick={() => window.open(WATCH_URL, "_blank")}
+            <Link
+              to="/movie/$slug"
+              params={{ slug: toSlug(movie.label) }}
+              aria-label={`Open ${movie.label}`}
               className="group absolute inset-0 flex items-center justify-center"
             >
               <span className="flex h-16 w-16 items-center justify-center rounded-full border border-cyan-glow/60 bg-void/60 backdrop-blur transition group-hover:scale-110 group-hover:border-magenta-glow">
                 <span className="ml-1 text-2xl text-cyan-glow">▶</span>
               </span>
-            </button>
+            </Link>
 
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-glow/80">
               <span>{movie.cat}</span>

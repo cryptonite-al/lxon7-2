@@ -1,5 +1,5 @@
 import cosmicVideo from "@/assets/cosmic-loop.mp4";
-import { WATCH_URL } from "@/lib/lxon-content";
+import { Link } from "@tanstack/react-router";
 
 export function TaglineBand() {
   return (
@@ -29,12 +29,12 @@ export function TaglineBand() {
           <span className="block text-gradient-signal">Endless Creators.</span>
           <span className="block text-gradient-flare">Limitless Possibilities.</span>
         </h2>
-        <a
-          href={WATCH_URL}
-          className="font-display mt-10 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-glow via-electric to-cyan-glow px-8 py-4 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_50px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
+        <Link
+          to="/browse"
+          className="btn-wave font-display mt-10 inline-flex items-center gap-3 rounded-full px-8 py-4 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_50px_-8px] shadow-violet-glow/70 transition hover:brightness-110"
         >
           Enter the Stream →
-        </a>
+        </Link>
       </div>
     </section>
   );

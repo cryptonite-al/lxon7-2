@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import spotlightVideo from "@/assets/spotlight-loop.mp4";
-import { WATCH_URL } from "@/lib/lxon-content";
 import { CornerFrame, Kicker } from "./primitives";
 
 export function SignalSpotlight() {
@@ -63,19 +63,20 @@ export function SignalSpotlight() {
           </div>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <a
-              href={WATCH_URL}
-              className="font-display group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-glow via-electric to-cyan-glow px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
+            <Link
+              to="/browse"
+              className="btn-wave font-display group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:brightness-110"
             >
               Explore the Catalog
               <span className="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-            <a
-              href={WATCH_URL}
+            </Link>
+            <Link
+              to="/movie/$slug"
+              params={{ slug: "rainbow-city" }}
               className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
             >
               <span className="text-magenta-glow">▶</span> Watch Trailer
-            </a>
+            </Link>
           </div>
         </div>
       </div>

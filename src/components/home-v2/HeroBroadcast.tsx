@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import heroVideo from "@/assets/hero-bg.mp4";
 import heroPoster from "@/assets/hero-poster.jpg";
-import { WATCH_URL, METRICS } from "@/lib/lxon-content";
+import { METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
 import { Kicker } from "./primitives";
 
@@ -64,19 +65,20 @@ export function HeroBroadcast() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
-          <a
-            href={WATCH_URL}
+          <Link
+            to="/browse"
             className="btn-wave font-display group inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:shadow-magenta-glow/70"
           >
             Start Watching
             <span className="transition-transform group-hover:translate-x-1">&#8594;</span>
-          </a>
-          <a
-            href={WATCH_URL}
+          </Link>
+          <Link
+            to="/movie/$slug"
+            params={{ slug: "rainbow-city" }}
             className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
           >
             <span className="text-magenta-glow">&#9654;</span> Watch Trailer
-          </a>
+          </Link>
         </div>
 
         {/* Metrics strip */}
