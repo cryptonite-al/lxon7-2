@@ -5,26 +5,31 @@ import { TopNav } from "@/components/home-v2/TopNav";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
 import { PageBanner } from "@/components/home-v2/PageBanner";
 import { Kicker } from "@/components/home-v2/primitives";
-import { getMovie, moviesByCategory, CATEGORY_META, WATCH_URL } from "@/lib/movies";
+import { CATEGORY_META, WATCH_URL } from "@/lib/movies";
 import type { Movie } from "@/lib/movies";
+import { fetchMovie, fetchMovies } from "@/lib/api";
+
+const prettySlug = (s: string) =>
+  s.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
 export const Route = createFileRoute("/movie/$slug")({
   head: ({ params }) => {
-    const m = getMovie(params.slug);
-    const title = m ? `${m.title} · LXON-7` : "LXON-7";
+    const title = params.slug ? `${prettySlug(params.slug)} · LXON-7` : "LXON-7";
     return {
       meta: [
         { title },
-        { name: "description", content: m?.synopsis ?? "An AI-native transmission on LXON-7." },
+        { name: "description", content: "An AI-native transmission on LXON-7." },
         { property: "og:title", content: title },
         { property: "og:type", content: "video.movie" },
       ],
     };
   },
-  loader: ({ params }) => {
-    const movie = getMovie(params.slug);
+  loader: async ({ params }) => {
+    const movie = await fetchMovie(params.slug);
     if (!movie) throw notFound();
-    return { movie };
+    const inCategory = await fetchMovies({ category: movie.category });
+    const related = inCategory.filter((m) => m.slug !== movie.slug).slice(0, 5);
+    return { movie, related };
   },
   component: MoviePage,
   notFoundComponent: () => (
@@ -46,11 +51,10 @@ export const Route = createFileRoute("/movie/$slug")({
 function MoviePage() {
   // This router version types Route.useLoaderData() as undefined — assert the
   // loader's known return shape so the file typechecks. (Do not remove.)
-  const { movie } = Route.useLoaderData() as { movie: Movie };
+  const { movie, related } = Route.useLoaderData() as { movie: Movie; related: Movie[] };
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const cat = CATEGORY_META[movie.category];
-  const related = moviesByCategory(movie.category).filter((m) => m.slug !== movie.slug).slice(0, 5);
   const watch = movie.watchUrl || WATCH_URL;
 
   return (
