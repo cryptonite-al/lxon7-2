@@ -67,7 +67,7 @@ function MoviePage() {
         {/* Backdrop / hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src={movie.poster} alt="" className="h-full w-full object-cover opacity-30" />
+            <img src={movie.poster} alt="" className="h-full w-full object-cover object-top opacity-30" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
           </div>
 
@@ -80,11 +80,11 @@ function MoviePage() {
               className={movie.poster2 ? "grid grid-cols-2 gap-3 md:mx-0" : "mx-auto w-full max-w-[280px] md:mx-0"}
             >
               <div className="signal-border overflow-hidden rounded-xl">
-                <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover" />
+                <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover object-top" />
               </div>
               {movie.poster2 && (
                 <div className="signal-border overflow-hidden rounded-xl">
-                  <img src={movie.poster2} alt={`${movie.title} — alternate poster`} className="aspect-[2/3] w-full object-cover" />
+                  <img src={movie.poster2} alt={`${movie.title} — alternate poster`} className="aspect-[2/3] w-full object-cover object-top" />
                 </div>
               )}
             </motion.div>
@@ -191,7 +191,7 @@ function MoviePage() {
             ) : (
               // Placeholder until a trailer is uploaded from the backend.
               <div className="relative flex h-full w-full items-center justify-center">
-                <img src={movie.poster} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+                <img src={movie.poster} alt="" className="absolute inset-0 h-full w-full object-cover object-top opacity-30" />
                 <div className="absolute inset-0 bg-void/50" />
                 <div className="relative flex flex-col items-center gap-3 text-center">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full border border-cyan-glow/50 text-2xl text-cyan-glow">▶</span>
@@ -220,7 +220,7 @@ function MoviePage() {
                   className="group relative block overflow-hidden rounded-lg border border-violet-glow/20 transition hover:border-cyan-glow/50"
                 >
                   <div className="relative aspect-[2/3]">
-                    <img src={m.poster} alt={m.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <img src={m.poster} alt={m.title} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 p-2">
                       <div className="font-display text-xs uppercase tracking-wide text-foreground">{m.title}</div>

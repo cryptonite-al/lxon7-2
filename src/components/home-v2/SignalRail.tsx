@@ -35,7 +35,7 @@ export function SignalRail({
                 <img
                   src={movie.poster}
                   alt={movie.title}
-                  className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-110"
+                  className="h-full w-full object-cover object-top transition-transform duration-[900ms] group-hover:scale-110"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />

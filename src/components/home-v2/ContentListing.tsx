@@ -25,7 +25,7 @@ function MovieCard({ movie, index }: { movie: Movie; index: number }) {
             src={movie.poster}
             alt={movie.title}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
           {movie.badges.length > 0 && (
