@@ -9,6 +9,8 @@
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
+  # Pretty admin login URL → the PHP dashboard login (kept out of the SPA).
+  RewriteRule ^secureaccess/?$ admin/login.php [L]
   # Everything else falls back to the SPA entry point.
   RewriteRule ^ index.html [L]
 </IfModule>

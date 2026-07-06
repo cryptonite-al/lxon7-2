@@ -85,8 +85,21 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-violet-glow/15 pt-5 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          © {new Date().getFullYear()} LXON-7. All rights reserved.
+        <div className="mt-10 flex items-center justify-between gap-4 border-t border-violet-glow/15 pt-5 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+          <span>© {new Date().getFullYear()} LXON-7. All rights reserved.</span>
+          {/* Discreet admin entry — full-page link so Apache serves /secureaccess (PHP login) */}
+          <a
+            href="/secureaccess"
+            aria-label="Admin login"
+            title="Admin"
+            className="inline-flex items-center gap-1.5 text-muted-foreground/50 transition-colors hover:text-cyan-glow"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>Admin</span>
+          </a>
         </div>
       </div>
     </footer>
