@@ -3,11 +3,12 @@ import type { Movie } from "@/lib/movies";
 // Same-origin PHP API (dashboard + site live on the same host).
 const API_BASE = "/api/movies.php";
 
-/** All published movies, optionally filtered by category and/or badge. */
-export async function fetchMovies(opts?: { category?: string; badge?: string }): Promise<Movie[]> {
+/** All published movies, optionally filtered by category, badge, or homepage set. */
+export async function fetchMovies(opts?: { category?: string; badge?: string; homepage?: boolean }): Promise<Movie[]> {
   const qs = new URLSearchParams();
   if (opts?.category) qs.set("category", opts.category);
   if (opts?.badge) qs.set("badge", opts.badge);
+  if (opts?.homepage) qs.set("homepage", "1");
   const url = qs.toString() ? `${API_BASE}?${qs.toString()}` : API_BASE;
 
   const res = await fetch(url, { headers: { Accept: "application/json" } });

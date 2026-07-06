@@ -6,7 +6,7 @@ import { METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
 import { Kicker } from "./primitives";
 
-export function HeroBroadcast() {
+export function HeroBroadcast({ trailerSlug }: { trailerSlug?: string }) {
   return (
     <section id="top" className="relative overflow-hidden bg-void">
       {/* Solid dark base so nothing shows through the contain gaps on mobile */}
@@ -72,13 +72,22 @@ export function HeroBroadcast() {
             Start Watching
             <span className="transition-transform group-hover:translate-x-1">&#8594;</span>
           </Link>
-          <Link
-            to="/movie/$slug"
-            params={{ slug: "rainbow-city" }}
-            className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
-          >
-            <span className="text-magenta-glow">&#9654;</span> Watch Trailer
-          </Link>
+          {trailerSlug ? (
+            <Link
+              to="/movie/$slug"
+              params={{ slug: trailerSlug }}
+              className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
+            >
+              <span className="text-magenta-glow">&#9654;</span> Watch Trailer
+            </Link>
+          ) : (
+            <Link
+              to="/browse"
+              className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
+            >
+              <span className="text-magenta-glow">&#9654;</span> Watch Trailer
+            </Link>
+          )}
         </div>
 
         {/* Metrics strip */}

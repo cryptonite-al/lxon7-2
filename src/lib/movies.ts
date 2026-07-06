@@ -57,6 +57,8 @@ export type Movie = {
   director: string;
   synopsis: string;
   poster: string;
+  // Optional second poster. When present, the movie page shows both side by side.
+  poster2?: string | null;
   // Trailer uploaded to the server (Phase 2). Empty string → template shows a
   // poster + play affordance placeholder instead of a <video>.
   trailerUrl: string;
@@ -78,9 +80,7 @@ export const MOVIES: Movie[] = [
     synopsis:
       "In a neon-drowned metropolis where every citizen dreams in a different color, one archivist chases a signal that refuses to be catalogued. A hallucinatory noir from LXON-7's inaugural cycle.",
     poster: rainbowCity,
-    // Local trailer file — upload the video to public/assets/rainbow-trailer.mp4
-    // (a missing/renamed file only 404s the video; it never breaks the build).
-    trailerUrl: "/assets/rainbow-trailer.mp4",
+    trailerUrl: "",
     watchUrl: WATCH_URL,
     tags: ["Neo-noir", "Generative", "Cycle 001"],
     badges: ["Featured", "Most Popular", "LXON-7 Preferred"],

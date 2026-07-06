@@ -71,17 +71,22 @@ function MoviePage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
           </div>
 
-          <div className="relative mx-auto grid max-w-[1400px] gap-10 px-4 pb-16 pt-12 md:grid-cols-[320px_1fr] md:px-8 md:pb-24 md:pt-20">
-            {/* Poster */}
+          <div className={`relative mx-auto grid max-w-[1400px] gap-10 px-4 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20 ${movie.poster2 ? "md:grid-cols-[440px_1fr]" : "md:grid-cols-[320px_1fr]"}`}>
+            {/* Poster(s) — one centered, or two side by side when a second exists */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mx-auto w-full max-w-[280px] md:mx-0"
+              className={movie.poster2 ? "grid grid-cols-2 gap-3 md:mx-0" : "mx-auto w-full max-w-[280px] md:mx-0"}
             >
               <div className="signal-border overflow-hidden rounded-xl">
                 <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover" />
               </div>
+              {movie.poster2 && (
+                <div className="signal-border overflow-hidden rounded-xl">
+                  <img src={movie.poster2} alt={`${movie.title} — alternate poster`} className="aspect-[2/3] w-full object-cover" />
+                </div>
+              )}
             </motion.div>
 
             {/* Info */}

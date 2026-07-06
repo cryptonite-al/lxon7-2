@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import spotlightVideo from "@/assets/spotlight-loop.mp4";
 import { CornerFrame, Kicker } from "./primitives";
 
-export function SignalSpotlight() {
+export function SignalSpotlight({ trailerSlug }: { trailerSlug?: string }) {
   return (
     <section className="relative overflow-hidden border-y border-violet-glow/20 bg-void/60 py-20 md:py-24">
       {/* ambient glows to match 7-2 sections */}
@@ -70,13 +70,22 @@ export function SignalSpotlight() {
               Explore the Catalog
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
-            <Link
-              to="/movie/$slug"
-              params={{ slug: "rainbow-city" }}
-              className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
-            >
-              <span className="text-magenta-glow">▶</span> Watch Trailer
-            </Link>
+            {trailerSlug ? (
+              <Link
+                to="/movie/$slug"
+                params={{ slug: trailerSlug }}
+                className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
+              >
+                <span className="text-magenta-glow">▶</span> Watch Trailer
+              </Link>
+            ) : (
+              <Link
+                to="/browse"
+                className="font-display inline-flex items-center gap-3 rounded-full border border-violet-glow/50 bg-void/40 px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-foreground backdrop-blur transition hover:border-cyan-glow hover:text-cyan-glow"
+              >
+                <span className="text-magenta-glow">▶</span> Watch Trailer
+              </Link>
+            )}
           </div>
         </div>
       </div>

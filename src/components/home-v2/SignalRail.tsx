@@ -1,18 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { toSlug } from "@/lib/slug";
+import { CATEGORY_META } from "@/lib/movies";
+import type { Movie } from "@/lib/movies";
 import { SectionLabel } from "./primitives";
 
-type Item = { title: string; cat: string; runtime: string; image: string };
-
+// Horizontal movie rail — driven by real dashboard movies.
 export function SignalRail({
   code,
   title,
-  items,
+  movies,
 }: {
   code: string;
   title: string;
-  items: Item[];
+  movies: Movie[];
 }) {
+  if (!movies || movies.length === 0) return null; // graceful: hide if none
+
   return (
     <section className="relative py-16 md:py-20">
       <div className="mx-auto max-w-[1400px] px-4 md:px-8">
@@ -22,17 +24,17 @@ export function SignalRail({
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent md:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent md:w-24" />
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-4 md:gap-6 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {items.map((item, i) => (
+          {movies.map((movie, i) => (
             <Link
-              key={i}
+              key={movie.slug}
               to="/movie/$slug"
-              params={{ slug: toSlug(item.title) }}
+              params={{ slug: movie.slug }}
               className="group signal-border relative w-[220px] shrink-0 snap-start overflow-hidden rounded-xl bg-void md:w-[260px]"
             >
               <div className="relative aspect-[2/3] overflow-hidden">
                 <img
-                  src={item.image}
-                  alt={item.title}
+                  src={movie.poster}
+                  alt={movie.title}
                   className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-110"
                   loading="lazy"
                 />
@@ -43,13 +45,13 @@ export function SignalRail({
               </div>
               <div className="p-4">
                 <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-glow/80">
-                  {item.cat}
+                  {CATEGORY_META[movie.category]?.label ?? movie.category}
                 </div>
                 <h4 className="font-display mt-1 truncate text-base uppercase text-foreground md:text-lg">
-                  {item.title}
+                  {movie.title}
                 </h4>
                 <div className="mt-2 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                  <span>{item.runtime}</span>
+                  <span>{movie.runtime}</span>
                   <span className="text-foreground transition-colors group-hover:text-magenta-glow">
                     Watch →
                   </span>

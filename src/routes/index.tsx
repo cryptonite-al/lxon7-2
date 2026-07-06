@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { TopNav } from "@/components/home-v2/TopNav";
 import { Preloader } from "@/components/home-v2/Preloader";
@@ -10,7 +11,8 @@ import { SignalRail } from "@/components/home-v2/SignalRail";
 import { SignalSpotlight } from "@/components/home-v2/SignalSpotlight";
 import { TaglineBand } from "@/components/home-v2/TaglineBand";
 import { SiteFooter } from "@/components/home-v2/SiteFooter";
-import { TRENDING, NEW_TRANSMISSIONS } from "@/lib/lxon-content";
+import { fetchMovies } from "@/lib/api";
+import type { Movie } from "@/lib/movies";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,21 +28,34 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  // Real movies from the dashboard (newest lead the list). Sections that use
+  // them hide gracefully until data arrives / if the API is unreachable.
+  const [movies, setMovies] = useState<Movie[]>([]);
+  useEffect(() => {
+    let alive = true;
+    fetchMovies({ homepage: true })
+      .then((data) => { if (alive) setMovies(data); })
+      .catch(() => { if (alive) setMovies([]); });
+    return () => { alive = false; };
+  }, []);
+
+  const topSlug = movies[0]?.slug;
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Preloader />
       <TopNav />
       <main>
-        <HeroBroadcast />
+        <HeroBroadcast trailerSlug={topSlug} />
         <SignalTicker />
-        <SignalSpotlight />
-        <FeaturedSpread />
+        <SignalSpotlight trailerSlug={topSlug} />
+        <FeaturedSpread movies={movies} />
         <CategoryDial />
-        <SignalRail code="03" title="Trending This Week" items={TRENDING} />
+        <SignalRail code="03" title="Trending This Week" movies={movies} />
         {/* "Meet the Director" is hidden for now. To bring it back: uncomment this line
             AND the import at the top of this file. Nothing was deleted. */}
         {/* <CreatorSpotlight /> */}
-        <SignalRail code="06" title="Just Added" items={NEW_TRANSMISSIONS} />
+        <SignalRail code="06" title="Just Added" movies={movies} />
         <TaglineBand />
       </main>
       <SiteFooter />
