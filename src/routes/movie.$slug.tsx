@@ -67,26 +67,26 @@ function MoviePage() {
         {/* Backdrop / hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src={movie.poster} alt="" className="h-full w-full object-cover object-top opacity-30" />
+            <img src={movie.poster} alt="" className="h-full w-full scale-110 object-cover object-center opacity-20 blur-2xl" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
           </div>
 
-          <div className={`relative mx-auto grid max-w-[1400px] gap-10 px-4 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20 ${movie.poster2 ? "md:grid-cols-[440px_1fr]" : "md:grid-cols-[320px_1fr]"}`}>
-            {/* Poster(s) — one centered, or two side by side when a second exists */}
+          <div className="relative mx-auto grid max-w-[1400px] items-center gap-10 px-4 pb-16 pt-12 md:grid-cols-[340px_1fr] md:px-8 md:pb-24 md:pt-20">
+            {/* Poster — primary in front; optional 2nd poster layered subtly behind it */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className={movie.poster2 ? "grid grid-cols-2 gap-3 md:mx-0" : "mx-auto w-full max-w-[280px] md:mx-0"}
+              className="relative mx-auto w-full max-w-[300px] md:mx-0"
             >
-              <div className="signal-border overflow-hidden rounded-xl">
-                <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover object-top" />
-              </div>
               {movie.poster2 && (
-                <div className="signal-border overflow-hidden rounded-xl">
-                  <img src={movie.poster2} alt={`${movie.title} — alternate poster`} className="aspect-[2/3] w-full object-cover object-top" />
+                <div className="signal-border pointer-events-none absolute inset-0 translate-x-5 translate-y-5 -rotate-3 overflow-hidden rounded-xl opacity-50 shadow-2xl">
+                  <img src={movie.poster2} alt="" className="h-full w-full object-cover object-top" />
                 </div>
               )}
+              <div className="signal-border relative overflow-hidden rounded-xl shadow-[0_25px_70px_-25px_rgba(0,0,0,0.85)]">
+                <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover object-top" />
+              </div>
             </motion.div>
 
             {/* Info */}
