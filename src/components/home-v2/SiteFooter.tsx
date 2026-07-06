@@ -6,7 +6,7 @@ const COLUMNS = [
   {
     title: "Browse",
     links: [
-      { label: "All Content", to: "/browse" },
+      { label: "Explore All", to: "/browse" },
       { label: "Films", to: "/films" },
       { label: "Series", to: "/series" },
       { label: "Documentaries", to: "/documentaries" },

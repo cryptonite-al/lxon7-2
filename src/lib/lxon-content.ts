@@ -157,18 +157,17 @@ export const CREATOR = {
 };
 
 export const METRICS = [
-  { label: "Creators", value: 480, suffix: "+" },
-  { label: "Titles", value: 1240, suffix: "" },
-  { label: "Hours Streamed", value: 26, suffix: "M" },
+  { label: "Original Films", value: 4, suffix: "" },
+  { label: "AI-Crafted", value: 100, suffix: "%" },
+  { label: "Genres", value: 4, suffix: "" },
   { label: "Countries", value: 92, suffix: "" },
 ];
 
 export const TICKER = [
-  "ON AIR · Transmission 001",
-  "New drop · Rainbow City",
-  "Signal locked · 92 countries",
-  "Now casting · Cycle 002 creators",
-  "Featured · Isla Varkonyi",
-  "Trending · Monolith 9",
+  "NOW STREAMING · White Women Love Black Men",
+  "NEW · Dear Derrick",
+  "FEATURED · Stolen Moment",
+  "NOW PLAYING · Rainbow City",
+  "Original AI cinema · streaming worldwide",
   "Live channel · watch.lxon-7.com",
 ];

@@ -36,9 +36,9 @@ export function HeroBroadcast({ trailerSlug }: { trailerSlug?: string }) {
 
       <div className="relative mx-auto max-w-[1400px] px-4 pt-16 md:px-8 md:pt-24 lg:pt-28">
         <div className="mb-6 flex flex-wrap items-center gap-4">
-          <Kicker>Transmission 001 &#183; MMXXVI</Kicker>
+          <Kicker>Now Streaming &#183; Original AI Films</Kicker>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            48° 51&#8242; N &#183; 002° 21&#8242; E
+            White Women Love Black Men &#183; Dear Derrick &#183; Rainbow City
           </span>
         </div>
 
