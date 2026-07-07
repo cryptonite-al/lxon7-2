@@ -13,8 +13,7 @@ export function FeaturedSpread({ movies }: { movies: Movie[] }) {
   const idx = Math.min(active, movies.length - 1);
   const movie = movies[idx];
   const catLabel = CATEGORY_META[movie.category]?.label ?? "Now Streaming";
-  const posterA = movie.poster;                    // left
-  const posterB = movie.poster2 || movie.poster;   // right (same as left if no 2nd poster)
+  const heroImg = movie.poster;
   const tabs = movies.slice(0, 4);
 
   return (
@@ -28,13 +27,13 @@ export function FeaturedSpread({ movies }: { movies: Movie[] }) {
             <AnimatePresence mode="wait">
               <motion.img
                 key={movie.slug}
-                src={posterA}
+                src={heroImg}
                 alt={movie.title}
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute inset-0 h-full w-full object-cover object-top"
+                className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
             </AnimatePresence>
@@ -99,13 +98,13 @@ export function FeaturedSpread({ movies }: { movies: Movie[] }) {
             <AnimatePresence mode="wait">
               <motion.img
                 key={movie.slug}
-                src={posterB}
+                src={heroImg}
                 alt={movie.title}
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute inset-0 h-full w-full object-cover object-top"
+                className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
             </AnimatePresence>
@@ -143,7 +142,7 @@ export function FeaturedSpread({ movies }: { movies: Movie[] }) {
                   }`}
                 >
                   <div className="relative aspect-video overflow-hidden rounded">
-                    <img src={t.poster} alt={t.title} className="h-full w-full object-cover object-top" loading="lazy" />
+                    <img src={t.poster} alt={t.title} className="h-full w-full object-cover" loading="lazy" />
                     {isActive && <div className="absolute inset-0 border-2 border-cyan-glow/60" />}
                   </div>
                   <div className="font-display mt-2 truncate text-[11px] uppercase tracking-wider text-foreground">

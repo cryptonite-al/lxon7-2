@@ -46,8 +46,8 @@ function Index() {
       <Preloader />
       <TopNav />
       <main>
-        <HeroBroadcast trailerSlug={topSlug} />
-        <SignalTicker />
+        <HeroBroadcast trailerSlug={topSlug} topTitle={movies[0]?.title} />
+        <SignalTicker movies={movies} />
         <SignalSpotlight trailerSlug={topSlug} />
         <FeaturedSpread movies={movies} />
         <CategoryDial />

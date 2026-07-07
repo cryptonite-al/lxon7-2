@@ -6,7 +6,7 @@ import { METRICS } from "@/lib/lxon-content";
 import { Counter } from "./Counter";
 import { Kicker } from "./primitives";
 
-export function HeroBroadcast({ trailerSlug }: { trailerSlug?: string }) {
+export function HeroBroadcast({ trailerSlug, topTitle }: { trailerSlug?: string; topTitle?: string }) {
   return (
     <section id="top" className="relative overflow-hidden bg-void">
       {/* Solid dark base so nothing shows through the contain gaps on mobile */}
@@ -36,9 +36,9 @@ export function HeroBroadcast({ trailerSlug }: { trailerSlug?: string }) {
 
       <div className="relative mx-auto max-w-[1400px] px-4 pt-16 md:px-8 md:pt-24 lg:pt-28">
         <div className="mb-6 flex flex-wrap items-center gap-4">
-          <Kicker>Now Streaming &#183; Original AI Films</Kicker>
+          <Kicker>{topTitle ? `Now Streaming \u00B7 ${topTitle}` : "AI Cinema \u00B7 MMXXVI"}</Kicker>
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            White Women Love Black Men &#183; Dear Derrick &#183; Rainbow City
+            48° 51&#8242; N &#183; 002° 21&#8242; E
           </span>
         </div>
 
