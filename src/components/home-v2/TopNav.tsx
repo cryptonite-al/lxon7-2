@@ -24,10 +24,10 @@ export function TopNav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-violet-glow/20 bg-black/95 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-4 md:px-8">
+      <div className="mx-auto flex h-[72px] max-w-[1400px] items-center gap-4 px-4 md:h-16 md:px-8">
         {/* Logo → home */}
         <Link to="/" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
-          <img src={logo} alt="LXON-7" className="h-10 w-auto md:h-12" />
+          <img src={logo} alt="LXON-7" className="h-14 w-auto md:h-12" />
         </Link>
 
         {/* Desktop nav */}

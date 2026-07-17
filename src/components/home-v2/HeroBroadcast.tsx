@@ -8,12 +8,12 @@ import { Kicker } from "./primitives";
 
 export function HeroBroadcast({ trailerSlug, topTitle }: { trailerSlug?: string; topTitle?: string }) {
   return (
-    <section id="top" className="relative overflow-hidden bg-void">
+    <section id="top" className="relative min-h-[88svh] overflow-hidden bg-void md:min-h-0">
       {/* Solid dark base so nothing shows through the contain gaps on mobile */}
       <div className="pointer-events-none absolute inset-0 bg-void" />
-      {/* Background visual — autoplaying muted video, full-bleed (object-cover) on all
-          sizes so it fills the background with no letterbox bars. If a browser blocks
-          muted autoplay, the poster (hero-poster.jpg) shows in its place. */}
+      {/* Background visual.
+          Desktop: autoplaying video, object-cover (full-bleed, immersive).
+          Mobile: object-contain so the whole frame is visible and never cut off. */}
       <video
         ref={(el) => {
           if (el) el.muted = true;
