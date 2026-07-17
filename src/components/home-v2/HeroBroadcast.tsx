@@ -11,9 +11,9 @@ export function HeroBroadcast({ trailerSlug, topTitle }: { trailerSlug?: string;
     <section id="top" className="relative overflow-hidden bg-void">
       {/* Solid dark base so nothing shows through the contain gaps on mobile */}
       <div className="pointer-events-none absolute inset-0 bg-void" />
-      {/* Background visual.
-          Desktop: autoplaying video, object-cover (full-bleed, immersive).
-          Mobile: object-contain so the whole frame is visible and never cut off. */}
+      {/* Background visual — autoplaying muted video, full-bleed (object-cover) on all
+          sizes so it fills the background with no letterbox bars. If a browser blocks
+          muted autoplay, the poster (hero-poster.jpg) shows in its place. */}
       <video
         ref={(el) => {
           if (el) el.muted = true;
@@ -25,7 +25,7 @@ export function HeroBroadcast({ trailerSlug, topTitle }: { trailerSlug?: string;
         muted
         playsInline
         preload="auto"
-        className="pointer-events-none absolute inset-0 h-full w-full object-contain opacity-95 md:object-cover"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-95"
       />
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-background/35 to-background/85" />
