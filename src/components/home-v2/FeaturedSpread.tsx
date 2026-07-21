@@ -23,66 +23,73 @@ export function FeaturedSpread({ movies }: { movies: Movie[] }) {
       <div className="grid gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
         {/* Left: active movie info */}
         <div className="flex flex-col">
-          <CornerFrame className="signal-border relative aspect-[16/10] overflow-hidden rounded-2xl bg-void">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={movie.slug}
-                src={heroImg}
-                alt={movie.title}
-                initial={{ opacity: 0, scale: 1.04 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0 h-full w-full object-cover object-top"
-                loading="lazy"
-              />
-            </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-              <Kicker>{catLabel}</Kicker>
-              <h3 className="font-display mt-2 text-3xl uppercase tracking-tight text-foreground md:text-4xl">
-                {movie.title}
-              </h3>
+          <Link
+            to="/movie/$slug"
+            params={{ slug: movie.slug }}
+            className="group block"
+            aria-label={`Open ${movie.title}`}
+          >
+            <CornerFrame className="signal-border relative aspect-[16/10] overflow-hidden rounded-2xl bg-void">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={movie.slug}
+                  src={heroImg}
+                  alt={movie.title}
+                  initial={{ opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-void via-void/30 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+                <Kicker>{catLabel}</Kicker>
+                <h3 className="font-display mt-2 text-3xl uppercase tracking-tight text-foreground transition-colors group-hover:text-cyan-glow md:text-4xl">
+                  {movie.title}
+                </h3>
+              </div>
+            </CornerFrame>
+
+            <div className="mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-glow/80">
+              {movie.runtime && <span>{movie.runtime}</span>}
+              {movie.year && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span>{movie.year}</span></>}
+              {movie.director && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span>Dir. {movie.director}</span></>}
+              {movie.rating && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span className="rounded border border-violet-glow/50 px-1.5 py-0.5">{movie.rating}</span></>}
             </div>
-          </CornerFrame>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-glow/80">
-            {movie.runtime && <span>{movie.runtime}</span>}
-            {movie.year && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span>{movie.year}</span></>}
-            {movie.director && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span>Dir. {movie.director}</span></>}
-            {movie.rating && <><span className="h-1 w-1 rounded-full bg-cyan-glow/50" /><span className="rounded border border-violet-glow/50 px-1.5 py-0.5">{movie.rating}</span></>}
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={movie.slug}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
-              className="mt-5 max-w-xl text-sm text-muted-foreground md:text-base"
-            >
-              {movie.synopsis}
-            </motion.p>
-          </AnimatePresence>
-
-          <div className="mt-5 flex flex-wrap gap-2">
-            {movie.tags.map((t) => (
-              <span
-                key={t}
-                className="font-mono rounded-full border border-violet-glow/40 bg-void/60 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={movie.slug}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="mt-5 max-w-xl text-sm text-muted-foreground md:text-base"
               >
-                {t}
-              </span>
-            ))}
-          </div>
+                {movie.synopsis}
+              </motion.p>
+            </AnimatePresence>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {movie.tags.map((t) => (
+                <span
+                  key={t}
+                  className="font-mono rounded-full border border-violet-glow/40 bg-void/60 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </Link>
 
           <Link
             to="/movie/$slug"
             params={{ slug: movie.slug }}
             className="btn-wave font-display group mt-7 inline-flex w-fit items-center gap-3 rounded-full px-7 py-3.5 text-xs uppercase tracking-[0.3em] text-void shadow-[0_0_40px_-8px] shadow-violet-glow/70 transition hover:brightness-110"
           >
-            Watch on LXON-7
+            View Film
             <span className="transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
