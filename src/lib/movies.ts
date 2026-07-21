@@ -59,6 +59,9 @@ export type Movie = {
   poster: string;
   // Optional second poster. When present, the movie page shows both side by side.
   poster2?: string | null;
+  // Optional wide (landscape) image for the homepage "What's Playing Now" spread.
+  // Falls back to the poster when not set.
+  backdrop?: string | null;
   // Trailer uploaded to the server (Phase 2). Empty string → template shows a
   // poster + play affordance placeholder instead of a <video>.
   trailerUrl: string;
