@@ -12,7 +12,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "LXON-7 is an AI film studio — we produce and stream original AI-made cinema, and open our stage to a new wave of AI directors.",
+          "LXON-7 is a AI film studio — we produce and stream original AI-made cinema, and open our stage to a new wave of AI directors.",
       },
       { property: "og:title", content: "Our Story · LXON-7" },
       { property: "og:description", content: "The vision and the people behind LXON-7." },
@@ -55,12 +55,12 @@ function AboutPage() {
           <section className="py-20 md:py-28">
             <Kicker>Our Story</Kicker>
             <h1 className="font-display mt-5 max-w-4xl text-4xl uppercase leading-[1.05] tracking-tight md:text-6xl">
-              <span className="text-gradient-signal">An AI film studio,</span>
+              <span className="text-gradient-signal">A AI film studio,</span>
               <br />
               built for the future of cinema.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              LXON-7 is an AI film studio. We produce and stream original AI-made cinema — feature
+              LXON-7 is a AI film studio. We produce and stream original AI-made cinema — feature
               films, mini-series, documentaries, and style shorts — and open our stage to a new
               wave of AI directors. Every frame is generated, not filmed: a new visual grammar
               shaped by machine intelligence and human vision.

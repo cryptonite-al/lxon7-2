@@ -47,7 +47,7 @@ export function SiteFooter() {
               <img src={logo} alt="LXON-7" className="h-20 w-auto md:h-24" />
             </Link>
             <p className="mt-5 max-w-xs text-sm text-muted-foreground">
-              An AI film studio — original cinema, streaming worldwide.
+              A AI film studio — original cinema, streaming worldwide.
             </p>
           </div>
 

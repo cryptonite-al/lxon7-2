@@ -59,7 +59,7 @@ export function HeroBroadcast({ trailerSlug, topTitle }: { trailerSlug?: string;
         </motion.h1>
 
         <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg [text-shadow:0_1px_12px_rgba(5,4,15,0.9)]">
-          LXON-7 is an AI film studio. We produce and stream original AI-made
+          LXON-7 is a AI film studio. We produce and stream original AI-made
           cinema &#8212; feature films, mini-series, documentaries, and style
           shorts &#8212; reaching audiences in 92 countries.
         </p>
