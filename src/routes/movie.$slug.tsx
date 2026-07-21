@@ -64,20 +64,113 @@ function MoviePage() {
       <main className="relative overflow-hidden">
         <div className="starfield absolute inset-0 opacity-25" />
 
-        {/* Backdrop / hero */}
+        {/* ── Hero: title + trailer front and centre ── */}
         <section className="relative overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={movie.poster} alt="" className="h-full w-full object-cover opacity-30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/40" />
+          {/* Faded backdrop from the poster */}
+          <div className="absolute inset-0 -z-0">
+            <img src={movie.poster} alt="" className="h-full w-full object-cover opacity-20" />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
           </div>
 
-          <div className={`relative mx-auto grid max-w-[1400px] gap-10 px-4 pb-16 pt-12 md:px-8 md:pb-24 md:pt-20 ${movie.poster2 ? "md:grid-cols-[440px_1fr]" : "md:grid-cols-[320px_1fr]"}`}>
-            {/* Poster(s) — one centered, or two side by side when a second exists */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+          {/* Title block */}
+          <div className="relative mx-auto max-w-[1100px] px-4 pt-10 text-center md:px-8 md:pt-16">
+            <div className="flex flex-wrap items-center justify-center gap-2">
+              <Kicker>{cat.label}</Kicker>
+              {movie.badges.map((b) => (
+                <span key={b} className="font-mono rounded-full border border-cyan-glow/40 bg-void/60 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-cyan-glow/90">
+                  {b}
+                </span>
+              ))}
+            </div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className={movie.poster2 ? "grid grid-cols-2 gap-3 md:mx-0" : "mx-auto w-full max-w-[280px] md:mx-0"}
+              className="font-display mt-4 text-[clamp(2.25rem,6vw,4.5rem)] font-black uppercase leading-[0.92] tracking-tight"
+            >
+              {movie.title}
+            </motion.h1>
+
+            <div className="font-mono mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+              <span className="text-foreground">{movie.year}</span>
+              <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
+              <span>{movie.runtime}</span>
+              <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
+              <span>{movie.rating}</span>
+              <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
+              <span>Dir. {movie.director}</span>
+            </div>
+          </div>
+
+          {/* Trailer — the cinema screen, right up top */}
+          <div className="relative mx-auto max-w-[1400px] px-4 pb-14 pt-8 md:px-8 md:pb-20 md:pt-10">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[60%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-glow/20 blur-[120px]" />
+            <div className="relative mb-4 flex items-center justify-center">
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-glow/70">
+                ▶ Official Trailer
+              </span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="signal-border relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-[0_0_100px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30"
+            >
+              {movie.trailerUrl ? (
+                <>
+                  <video
+                    ref={videoRef}
+                    src={movie.trailerUrl}
+                    poster={movie.poster}
+                    controls={playing}
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full bg-black object-contain"
+                    onPlay={() => setPlaying(true)}
+                  />
+                  {!playing && (
+                    <button
+                      type="button"
+                      aria-label="Play trailer"
+                      onClick={() => {
+                        videoRef.current?.play().catch(() => {});
+                        setPlaying(true);
+                      }}
+                      className="group absolute inset-0 flex items-center justify-center"
+                    >
+                      <span className="absolute inset-0 bg-void/40 transition group-hover:bg-void/25" />
+                      <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-glow/70 bg-void/60 pl-1 text-3xl text-cyan-glow shadow-[0_0_40px_-6px] shadow-cyan-glow/70 backdrop-blur transition group-hover:scale-110 md:h-24 md:w-24">
+                        ▶
+                      </span>
+                    </button>
+                  )}
+                </>
+              ) : (
+                // Placeholder until a trailer is uploaded from the backend.
+                <div className="relative flex h-full w-full items-center justify-center">
+                  <img src={movie.poster} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+                  <div className="absolute inset-0 bg-void/50" />
+                  <div className="relative flex flex-col items-center gap-3 text-center">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-cyan-glow/50 text-2xl text-cyan-glow">▶</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Trailer coming soon</span>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── Details: key art (poster) + synopsis + actions ── */}
+        <section className="relative mx-auto max-w-[1400px] px-4 pb-16 md:px-8 md:pb-20">
+          <div className={`grid gap-10 ${movie.poster2 ? "md:grid-cols-[440px_1fr]" : "md:grid-cols-[300px_1fr]"}`}>
+            {/* Poster(s) — one, or two side by side */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className={movie.poster2 ? "grid grid-cols-2 gap-3" : "mx-auto w-full max-w-[300px] md:mx-0"}
             >
               <div className="signal-border overflow-hidden rounded-xl">
                 <img src={movie.poster} alt={movie.title} className="aspect-[2/3] w-full object-cover" />
@@ -89,32 +182,10 @@ function MoviePage() {
               )}
             </motion.div>
 
-            {/* Info */}
+            {/* Synopsis + tags + actions */}
             <div className="flex flex-col justify-center">
-              <div className="flex flex-wrap items-center gap-2">
-                <Kicker>{cat.label}</Kicker>
-                {movie.badges.map((b) => (
-                  <span key={b} className="font-mono rounded-full border border-cyan-glow/40 bg-void/60 px-2.5 py-0.5 text-[9px] uppercase tracking-[0.2em] text-cyan-glow/90">
-                    {b}
-                  </span>
-                ))}
-              </div>
-
-              <h1 className="font-display mt-4 text-[clamp(2.25rem,6vw,4.5rem)] font-black uppercase leading-[0.92] tracking-tight">
-                {movie.title}
-              </h1>
-
-              <div className="font-mono mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                <span className="text-foreground">{movie.year}</span>
-                <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
-                <span>{movie.runtime}</span>
-                <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
-                <span>{movie.rating}</span>
-                <span className="h-1 w-1 rounded-full bg-cyan-glow/50" />
-                <span>Dir. {movie.director}</span>
-              </div>
-
-              <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+              <h2 className="font-display text-lg uppercase tracking-[0.25em] text-foreground">Synopsis</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
                 {movie.synopsis}
               </p>
 
@@ -145,60 +216,6 @@ function MoviePage() {
                 </Link>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Trailer — the big cinema screen */}
-        <section className="relative mx-auto max-w-[1400px] px-4 pb-20 md:px-8">
-          {/* ambient glow behind the screen */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[60%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-glow/20 blur-[120px]" />
-          <div className="relative mb-6 flex flex-col items-center gap-2 text-center">
-            <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-glow/70">Now screening</span>
-            <h2 className="font-display text-2xl uppercase tracking-[0.15em] text-foreground md:text-3xl">
-              Official Trailer
-            </h2>
-          </div>
-          <div className="signal-border relative mx-auto aspect-video w-full max-w-2xl overflow-hidden rounded-2xl bg-black shadow-[0_0_80px_-20px] shadow-violet-glow/60 ring-1 ring-violet-glow/30">
-            {movie.trailerUrl ? (
-              <>
-                <video
-                  ref={videoRef}
-                  src={movie.trailerUrl}
-                  poster={movie.poster}
-                  controls={playing}
-                  playsInline
-                  preload="metadata"
-                  className="h-full w-full bg-black object-contain"
-                  onPlay={() => setPlaying(true)}
-                />
-                {!playing && (
-                  <button
-                    type="button"
-                    aria-label="Play trailer"
-                    onClick={() => {
-                      videoRef.current?.play().catch(() => {});
-                      setPlaying(true);
-                    }}
-                    className="group absolute inset-0 flex items-center justify-center"
-                  >
-                    <span className="absolute inset-0 bg-void/40 transition group-hover:bg-void/25" />
-                    <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-cyan-glow/70 bg-void/60 pl-1 text-3xl text-cyan-glow shadow-[0_0_40px_-6px] shadow-cyan-glow/70 backdrop-blur transition group-hover:scale-110 md:h-24 md:w-24">
-                      ▶
-                    </span>
-                  </button>
-                )}
-              </>
-            ) : (
-              // Placeholder until a trailer is uploaded from the backend.
-              <div className="relative flex h-full w-full items-center justify-center">
-                <img src={movie.poster} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-                <div className="absolute inset-0 bg-void/50" />
-                <div className="relative flex flex-col items-center gap-3 text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full border border-cyan-glow/50 text-2xl text-cyan-glow">▶</span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Trailer coming soon</span>
-                </div>
-              </div>
-            )}
           </div>
         </section>
 
