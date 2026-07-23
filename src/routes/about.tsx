@@ -36,7 +36,7 @@ const FOUNDERS = [
     role: "Co-Founder · Filmmaker & Producer",
     initial: "D",
     to: "/founders/dear-derrick",
-    bio: "Born and raised in Dallas, Dear Derrick turned a childhood of hardship into a 25-year career in film as a writer, actor, and producer — founding his first production company in 2001 and later selling a film library to a major distributor. A self-taught storyteller who wrote every word himself, he now brings that same courage-to-create to LXON-7, using AI to keep making cinema for the overlooked and underestimated. For Derrick, filmmaking has always been freedom; AI is simply the next frontier of it.",
+    bio: "Rather than allowing adversity to define him, Dear Derrick chose to rise above it. Entirely self-taught, he has spent more than twenty-five years in film as a creator, writer, actor, producer, and executive producer — founding New Era Pictures in 2001 and selling a library of films to Maverick Entertainment in 2012. For Derrick, filmmaking has never been merely a profession; it is a calling — the courage to create with honesty, passion, and purpose, and to remind those who feel overlooked that their past does not determine their future.",
   },
 ] as const;
 

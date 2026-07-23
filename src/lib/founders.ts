@@ -55,27 +55,29 @@ export const FOUNDERS: Record<string, Founder> = {
     image: "/assets/derrick.jpg",
     accent: "the courage to create.",
     intro:
-      "Born and raised in Dallas, Dear Derrick turned a childhood of hardship into a 25-year career in film — and brings that same courage-to-create to LXON-7, using AI to keep making cinema for the overlooked and underestimated.",
+      "Derrick’s life is a testament to the extraordinary strength of the human spirit. Rather than allowing adversity to define him, he chose to rise above it. Every obstacle became an opportunity, every setback became a lesson, and every hardship became the foundation upon which he built his future.",
     sections: [
       {
         heading: "Rising above",
         body: [
-          "Derrick grew up a poor kid with big dreams, facing undiagnosed dyslexia that made school reading painful and being bullied for his struggles. With relentless encouragement from his mother, he refused to give up.",
-          "He turned every hardship into fuel — becoming a self-taught writer who has authored several books, writing every word himself.",
+          "As he matured, Derrick developed a deep sense of purpose. He became a voice for those who had been silenced and a defender of those who could not defend themselves. He refused to be limited by circumstance, choosing courage, compassion, and conviction over fear and complacency.",
+          "Entirely self-taught, Derrick discovered the power of storytelling as a means of healing, inspiring, and creating change. He has authored several books, personally writing every word himself—a reflection of his unwavering commitment to authenticity, discipline, and truth.",
+          "Standing 6 feet 4 inches tall and weighing 275 pounds, Derrick’s greatest strength has never been his physical presence, but the resilience of his character. Throughout his life, he has consistently overcome expectations, shattered barriers, and proven that determination is far more powerful than circumstance.",
         ],
       },
       {
         heading: "Industry leadership",
         body: [
-          "Derrick has worked in film for more than 25 years as a writer, actor, producer, and executive producer. In 2001 he founded his own production company, growing its creative output and value.",
-          "In 2012 he sold a library of films to a major distributor for a significant profit — a milestone in a long producing career that has also seen him star in multiple films.",
+          "For more than twenty-five years, Derrick has dedicated his life to the film industry as a creator, writer, actor, producer, and executive producer. His passion for storytelling has driven a career built on vision, perseverance, and innovation.",
+          "In 2001, he founded New Era Pictures, where his leadership and creative direction played a significant role in expanding the company’s value, reputation, and body of work. In 2012, he reached another important milestone by successfully selling a library of films to Maverick Entertainment, a defining achievement that further established his reputation as a producer and entrepreneur.",
+          "Throughout his career, Derrick has appeared in numerous films, frequently collaborating with acclaimed director GuGu E. Michaels. Together, they have brought compelling stories to audiences through a shared commitment to authentic and meaningful filmmaking.",
         ],
       },
       {
-        heading: "Vision at LXON-7",
+        heading: "Beyond the screen",
         body: [
-          "For Derrick, filmmaking is more than entertainment — it is freedom: a way to express his vision, explore humanity, and share his experience with the world. He believes there is no right or wrong way to make a film, only the courage to create.",
-          "AI is simply the next frontier of that freedom. His mission at LXON-7 is to inspire those who feel overlooked, underestimated, or afraid — proof that adversity is temporary and perseverance transforms destinies.",
+          "For Derrick, filmmaking has never been merely a profession—it is a calling. It is the freedom to give voice to untold stories, to explore the depth of the human experience, and to transform life’s greatest challenges into messages of hope. He believes that there is no single formula for creating great films; there is only the courage to create with honesty, passion, and purpose.",
+          "Today, Derrick’s mission reaches far beyond the screen. He strives to inspire those who feel overlooked, underestimated, or forgotten—to remind them that their past does not determine their future. His journey stands as powerful evidence that adversity is never the end of the story. With faith, perseverance, and unwavering determination, even the greatest obstacles can become the foundation for an extraordinary legacy.",
         ],
       },
     ],
