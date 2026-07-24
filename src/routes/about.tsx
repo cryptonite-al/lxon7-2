@@ -29,7 +29,7 @@ const FOUNDERS = [
     role: "Co-Founder · Creator & Producer",
     initial: "K",
     to: "/founders/juma",
-    bio: "A Dallas-born creator, entrepreneur, and community builder, King'Juma has spent his life turning opportunity into art — across theater, independent film, music, and podcasting. His guiding line, \u201cnever wait on opportunity, always create opportunity,\u201d is the engine behind LXON-7: a studio and platform built to give a new generation of AI filmmakers a global stage. He is focused on building something that outlives him — amplifying overlooked voices and proving AI cinema can be both bold and deeply human.",
+    bio: "King’Juma did not come from comfort or powerful connections — he came out of poverty in Dallas and turned survival into ambition, pain into creativity, and street knowledge into business discipline. His work reaches across independent film, music, media, branding, and podcasting. He lives by one rule: “Never wait on opportunity. Always create opportunity.” That mindset is the foundation of LXON-7: an AI streaming service created to give independent filmmakers and overlooked creators a global platform.",
   },
   {
     name: "Dear Derrick",

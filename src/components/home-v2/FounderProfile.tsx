@@ -49,9 +49,13 @@ export function FounderProfile({ founder }: { founder: Founder }) {
               <div className="font-mono mt-4 text-[11px] uppercase tracking-[0.3em] text-cyan-glow/70">
                 {founder.role}
               </div>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                {founder.intro}
-              </p>
+              <div className="mt-6 max-w-xl space-y-4">
+                {(Array.isArray(founder.intro) ? founder.intro : [founder.intro]).map((p, i) => (
+                  <p key={i} className="text-base leading-relaxed text-muted-foreground md:text-lg">
+                    {p}
+                  </p>
+                ))}
+              </div>
             </Reveal>
           </section>
 

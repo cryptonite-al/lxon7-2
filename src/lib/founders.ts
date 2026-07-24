@@ -9,7 +9,8 @@ export type Founder = {
   role: string;
   image: string;
   accent: string; // hero two-tone accent line
-  intro: string;
+  // Lead paragraph(s) under the name. A single string or several paragraphs.
+  intro: string | string[];
   sections: { heading: string; body: string[] }[];
 };
 
@@ -20,29 +21,60 @@ export const FOUNDERS: Record<string, Founder> = {
     initial: "K",
     role: "Co-Founder · Creator & Producer",
     image: "/assets/juma.jpg",
-    accent: "a builder of opportunity.",
-    intro:
-      "A Dallas-born creator, entrepreneur, and community builder, King'Juma has spent his life turning opportunity into art — and now channels that drive into LXON-7, a studio and platform built to give a new generation of AI filmmakers a global stage.",
+    accent: "built from pressure.",
+    intro: [
+      "King’Juma did not come from comfort, powerful connections, or a life where opportunities were handed to him. He came out of poverty in Dallas, surrounded by struggle, street pressure, and the daily reality of having to survive before he could ever think about success.",
+      "His story is not clean, safe, or perfect. It is the story of a man who made mistakes, took losses, faced hard situations, and kept fighting even when life gave him every reason to quit.",
+      "Instead of allowing his environment to decide his future, King’Juma turned survival into ambition, pain into creativity, and street knowledge into business discipline. With God’s blessings, faith, hard work, and determination, he continued pushing forward. That same drive now powers LXON-7, an AI streaming service created to give independent filmmakers and overlooked creators a global platform.",
+    ],
     sections: [
       {
-        heading: "Path to the arts",
+        heading: "Born into the struggle",
         body: [
-          "Juma found his earliest voice in theater, studying performance through high school and college and earning a full scholarship in the arts.",
-          "A period focused on street life pulled him away from that path — but the detour ultimately sharpened his purpose. He redirected his energy into building a brand, nurturing his creativity, and chasing the dreams he'd once paused.",
+          "King’Juma discovered his creative ability through theater, studying performance throughout high school and college. His talent earned him an offer for a full scholarship in Theater Arts.",
+          "But he did not accept it.",
+          "At the time, he was young, distracted, and not mature enough to understand the value of the opportunity in front of him. Looking back, he recognizes that decision as one of the biggest mistakes of his life.",
+          "Poverty, street life, and the pressure to survive eventually pulled him farther away from the path he had started building. The streets became another kind of classroom—one with no safety net, no guaranteed second chances, and consequences that could change a life overnight.",
+          "Those years hardened him, but they also taught him how to read people, survive under pressure, recognize opportunity, and build something from almost nothing.",
+          "There were many times when King’Juma wanted to stop trying altogether. There were moments when the struggle became so heavy that giving up felt easier than continuing.",
+          "But his mother, Ms. Mary, refused to give up on him.",
+          "She believed in him during the years when he struggled to believe in himself. Her faith, encouragement, and love reminded him that his mistakes did not have to become his final destination. Because she continued to see something greater in him, King’Juma slowly began to see it in himself.",
+          "Through God’s grace and the love and belief of Ms. Mary, he found the strength to remain focused, determined, and moving forward.",
         ],
       },
       {
-        heading: "A creator across mediums",
+        heading: "Turning survival into purpose",
         body: [
-          "His work spans independent film, music, and podcasting. He helped produce several indie films and made his on-screen debut in \u201cTHUGS,\u201d then entered the music industry — earning a record deal and learning branding, discipline, and storytelling from a new angle.",
-          "As a producer, he has led filming, editing, and release across a growing slate, amplifying community voices and culture.",
+          "King’Juma eventually made the decision to redirect the same energy that once pulled him toward the streets into ownership, filmmaking, business, and creating a future bigger than the environment he came from.",
+          "He could not go backward and reclaim the opportunities he had lost, but he could stop wasting the ones still in front of him.",
+          "He began rebuilding himself with the lessons earned through poverty, failure, rejection, and survival. Nothing came easily. He had to learn through experience, move without guarantees, trust God’s direction, and create opportunities in places where no doors appeared to be open.",
+          "His past did not disappear, but it became fuel.",
+        ],
+      },
+      {
+        heading: "A creator across every lane",
+        body: [
+          "King’Juma built his creative career without waiting for permission.",
+          "His work reaches across independent film, music, media, branding, and podcasting. He helped produce several independent films and made his on-screen debut in “THUGS.”",
+          "He later entered the music industry, earned a recording deal, and learned firsthand how branding, promotion, discipline, image, and storytelling can determine whether talent is noticed or ignored.",
+          "As a producer, he has taken projects from the idea stage through filming, editing, promotion, and release. His work focuses on real stories, raw experiences, underserved communities, and voices that mainstream entertainment often overlooks.",
+          "He did not enter the industry through an open door. He fought his way in by learning every side of the business, trusting his faith, and creating his own opportunities.",
         ],
       },
       {
         heading: "Building LXON-7",
         body: [
-          "His guiding line — \u201cnever wait on opportunity, always create opportunity\u201d — is the engine behind LXON-7. He is focused on creating opportunity for overlooked creators and proving that AI cinema can be both bold and deeply human.",
-          "For Juma, LXON-7 is about building something that outlives him: a creative home that inspires the next generation of storytellers.",
+          "King’Juma lives by one rule:",
+          "“Never wait on opportunity. Always create opportunity.”",
+          "That mindset is the foundation of LXON-7.",
+          "LXON-7 was not created simply to become another streaming service. It was built to challenge an entertainment industry that too often ignores independent creators, unconventional stories, and people without powerful connections.",
+          "The platform is focused on giving a new generation of AI filmmakers, producers, and storytellers a place to be seen worldwide.",
+          "King’Juma understands what it feels like to have talent but no access, ambition but no financial backing, and a vision that other people cannot yet see. He also understands the pain of mishandling an opportunity and realizing its value after it is gone.",
+          "That is why LXON-7 is being built to create opportunities for people who may never receive another one.",
+          "For King’Juma, this is bigger than entertainment. It is about ownership, redemption, creating opportunities, honoring the faith his mother placed in him, walking in the purpose God gave him, and leaving behind something that can outlive him.",
+          "He came from poverty, survived the streets, made costly mistakes, nearly gave up, and rebuilt his direction.",
+          "Through it all, God blessed him, and Ms. Mary believed in him until he learned to believe in himself.",
+          "His life proves that a bad decision can delay your purpose, but with God’s blessings, faith, and determination, it does not have to destroy it.",
         ],
       },
     ],
