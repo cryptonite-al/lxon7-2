@@ -15,11 +15,22 @@
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Long-cache fingerprinted build assets; keep HTML uncached so deploys show up.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(js|css|woff2?|png|jpe?g|gif|svg|ico|mp4|webm)$">
+  # Build output is fingerprinted by Vite (index-a1b2c3.js), so the filename
+  # changes whenever the contents change — safe to cache forever.
+  <FilesMatch "\.(js|css|woff2?)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+
+  # Images and video keep STABLE filenames (derrick.jpg, posters, backdrops,
+  # trailers), so they must NOT be immutable — otherwise replacing a file on the
+  # server never reaches visitors who already cached it. Short cache + revalidate
+  # keeps things fast while letting replacements show up.
+  <FilesMatch "\.(png|jpe?g|gif|svg|webp|ico|mp4|webm)$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+
+  # HTML always fresh so deploys show up immediately.
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
