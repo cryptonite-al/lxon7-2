@@ -5,7 +5,7 @@ import { SectionLabel } from "./primitives";
 type Field = { label: string; placeholder: string; options?: string[] };
 
 const FIELDS: Field[] = [
-  { label: "> NAME", placeholder: "Isla Varkonyi" },
+  { label: "> NAME", placeholder: "Your name" },
   { label: "> HANDLE", placeholder: "@studio" },
   { label: "> TITLE", placeholder: "Working title of your transmission" },
   {
