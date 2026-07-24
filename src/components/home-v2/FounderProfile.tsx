@@ -9,6 +9,11 @@ import type { Founder } from "@/lib/founders";
 
 export function FounderProfile({ founder }: { founder: Founder }) {
   const [imgOk, setImgOk] = useState(true);
+  // The opening can be one paragraph or several. The first sits beside the
+  // portrait (keeping that column level with the photo); any others run
+  // full width underneath.
+  const introParagraphs = Array.isArray(founder.intro) ? founder.intro : [founder.intro];
+  const [leadParagraph, ...restParagraphs] = introParagraphs;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -49,15 +54,27 @@ export function FounderProfile({ founder }: { founder: Founder }) {
               <div className="font-mono mt-4 text-[11px] uppercase tracking-[0.3em] text-cyan-glow/70">
                 {founder.role}
               </div>
-              <div className="mt-6 max-w-xl space-y-4">
-                {(Array.isArray(founder.intro) ? founder.intro : [founder.intro]).map((p, i) => (
+              {leadParagraph && (
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                  {leadParagraph}
+                </p>
+              )}
+            </Reveal>
+          </section>
+
+          {/* Rest of the opening — full width below the portrait, so the hero
+              text column stays level with the photo instead of running past it. */}
+          {restParagraphs.length > 0 && (
+            <Reveal delay={0.15}>
+              <section className="max-w-3xl space-y-4 pb-4 md:pb-8">
+                {restParagraphs.map((p, i) => (
                   <p key={i} className="text-base leading-relaxed text-muted-foreground md:text-lg">
                     {p}
                   </p>
                 ))}
-              </div>
+              </section>
             </Reveal>
-          </section>
+          )}
 
           {/* Story sections */}
           {founder.sections.map((s, i) => (
