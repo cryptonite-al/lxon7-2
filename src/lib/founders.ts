@@ -20,7 +20,7 @@ export const FOUNDERS: Record<string, Founder> = {
     name: "King'Juma",
     initial: "K",
     role: "Co-Founder · Creator & Producer",
-    image: "/assets/juma.jpg",
+    image: "/assets/juma.jpg?v=2",
     accent: "built from pressure.",
     intro: [
       "King’Juma did not come from comfort, powerful connections, or a life where opportunities were handed to him. He came out of poverty in Dallas, surrounded by struggle, street pressure, and the daily reality of having to survive before he could ever think about success.",
@@ -84,7 +84,7 @@ export const FOUNDERS: Record<string, Founder> = {
     name: "Dear Derrick",
     initial: "D",
     role: "Co-Founder · Filmmaker & Producer",
-    image: "/assets/derrick.jpg",
+    image: "/assets/derrick.jpg?v=2",
     accent: "the courage to create.",
     intro:
       "Derrick’s life is a testament to the extraordinary strength of the human spirit. Rather than allowing adversity to define him, he chose to rise above it. Every obstacle became an opportunity, every setback became a lesson, and every hardship became the foundation upon which he built his future.",
